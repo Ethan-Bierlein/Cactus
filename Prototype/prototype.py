@@ -68,4 +68,4 @@ class MainGame(object):
 		Start playing the game. This function will find the
 		MapPosition element that has the name "start".
 		"""
-		pass # TODO: Implement gameplay.
+		pass
