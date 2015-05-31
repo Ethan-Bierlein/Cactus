@@ -4,13 +4,26 @@ class MapPosition(object):
 	map. Contains the following data attributes.
 	
 		name     - The name of the choice.
+		desc     - A description of the choice.
 		choices  - A dictionary of possible choices.
 		function - An (optional) function to be run.
 	"""
-	def __init__(self, name, choices, function=None):
+	def __init__(self, name, desc, choices, function=None):
 		self.name     = name
+		self.desc     = desc
 		self.choices  = choices
 		self.function = function
+		
+	def print_choice(self):
+		"""
+		Outputs certain data about the choice, e.g, description,
+		it's name, possible choices, etc.
+		"""
+		print "{0}: {1}. Choices: {2}".format(
+			self.name,
+			self.desc,
+			', '.join([key for key, value in self.choices.iteritems()])
+		)
 		
 	def run_function(self):
 		"""
@@ -54,18 +67,44 @@ class MainGame(object):
 	Describes data about the game itself. Contains
 	the following data attributes.
 	
+		name        - The name of the game.
+		desc        - The intro text to be printed.
+		prompt      - The prompt to use during gameplay.
 		game_map    - A GameMap instance containing map data.
 		player_data - A Player instance containing player data.
 	"""
-	def __init__(self, game_map, player_data):
-		self.game_map    = game_map
-		self.player_data = player_data
-		self.map_data    = game_map.return_map()
-		self.start_index = game_map.find_start()
+	def __init__(self, name, desc, prompt, game_map, player_data):
+		self.name         = name
+		self.desc         = desc
+		self.prompt       = prompt
+		self.game_map     = game_map
+		self.player_data  = player_data
+		self.map_data     = game_map.return_map()
+		self.start_index  = game_map.find_start()
+		self.map_position = start_index
 		
 	def play_game(self):
 		"""
 		Start playing the game. This function will find the
-		MapPosition element that has the name "start".
+		MapPosition element that has the name "start". Do note,
+		user input is lowered, but a check is also done on non-
+		lowered input.
 		"""
-		pass
+		print self.name
+		print self.desc
+		
+		while True:
+			current_position = self.map_data[self.map_position]
+			possible_choices = current_choice.choices
+			
+			current_position.print_choice()
+			current_position.run_function()
+			
+			user_input = raw_input(self.prompt)
+			
+			if user_input.lower() in possible_choices:
+				self.map_position = possible_choices[user_input.lower()]
+			elif user_input in possible_choices:
+				self.map_position = possible_choices[user_input]
+			
+			
