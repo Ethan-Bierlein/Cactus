@@ -19,11 +19,17 @@ class MapPosition(object):
 		Outputs certain data about the choice, e.g, description,
 		it's name, possible choices, etc.
 		"""
-		print "{0}: {1}. Choices: {2}".format(
-			self.name,
-			self.desc,
-			', '.join([key for key, value in self.choices.iteritems()])
-		)
+		if self.choices != {}:
+			print "{0}: {1}. Choices: {2}".format(
+				self.name,
+				self.desc,
+				', '.join([key for key, value in self.choices.iteritems()])
+			)
+		else:
+			print "{0}: {1}.".format(
+				self.name,
+				self.desc
+			)
 		
 	def run_function(self):
 		"""
@@ -71,17 +77,15 @@ class MainGame(object):
 		desc        - The intro text to be printed.
 		prompt      - The prompt to use during gameplay.
 		game_map    - A GameMap instance containing map data.
-		player_data - A Player instance containing player data.
 	"""
-	def __init__(self, name, desc, prompt, game_map, player_data):
+	def __init__(self, name, desc, prompt, game_map):
 		self.name         = name
 		self.desc         = desc
 		self.prompt       = prompt
 		self.game_map     = game_map
-		self.player_data  = player_data
 		self.map_data     = game_map.return_map()
 		self.start_index  = game_map.find_start()
-		self.map_position = start_index
+		self.map_position = self.start_index
 		
 	def play_game(self):
 		"""
@@ -95,7 +99,7 @@ class MainGame(object):
 		
 		while True:
 			current_position = self.map_data[self.map_position]
-			possible_choices = current_choice.choices
+			possible_choices = current_position.choices
 			
 			current_position.print_choice()
 			current_position.run_function()
@@ -106,5 +110,3 @@ class MainGame(object):
 				self.map_position = possible_choices[user_input.lower()]
 			elif user_input in possible_choices:
 				self.map_position = possible_choices[user_input]
-			
-			
