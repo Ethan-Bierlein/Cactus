@@ -20,13 +20,13 @@ class MapPosition(object):
 		it's name, possible choices, etc.
 		"""
 		if self.choices != {}:
-			print "{0}: {1}. Choices: {2}".format(
+			print "{0}: {1} Choices: {2}".format(
 				self.name,
 				self.desc,
 				', '.join([key for key, value in self.choices.iteritems()])
 			)
 		else:
-			print "{0}: {1}.".format(
+			print "{0}: {1}".format(
 				self.name,
 				self.desc
 			)

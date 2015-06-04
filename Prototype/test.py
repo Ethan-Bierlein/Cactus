@@ -20,7 +20,7 @@ GAME_MAP = cactus.GameMap([
 		"Right",
 		"You took the right path and died!",
 		{},
-		function=exit,
+		function=exit
 	)
 ])
 
