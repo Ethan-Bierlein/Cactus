@@ -30,7 +30,7 @@ class MapPosition(object):
 				"{0}: {1} Choices: {2}".format(
 					self.name      ,
 					self.desc_enter,
-					', '.join([key for key value in self.choices.items()])
+					', '.join([key for key, value in self.choices.items()])
 				)
 			)
 		else:
@@ -46,4 +46,4 @@ class MapPosition(object):
 		Output the various data associated with a MapPosition when
 		the player exits the MapPosition.
 		"""
-		print self.desc_exit
+		print(self.desc_exit)
