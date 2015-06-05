@@ -8,7 +8,7 @@ class MapPosition(object):
 		desc_enter - A description of the MapPosition displayed when the player enters.
 		desc_exit  - A description of the MapPosition displayed when the player exits.
 		choices    - A dictionary referencing other possible choices, e.g, indexes in the map.
-		function   - An optional function to be run before desc_enter is displayed.
+		function   - An optional function to be run after desc_enter is displayed.
 	"""
 	def __init__(self, name: str, desc_enter: str, desc_exit: str, choices: dict, function=None):
 		self.name       = name
@@ -17,31 +17,30 @@ class MapPosition(object):
 		self.choices    = choices
 		self.function   = function
 		
-	def _position_enter(self):
+	def position_enter(self):
 		"""
 		Output the various data associated with a MapPosition when 
 		the player enters the MapPosition. 
 		"""
-		if self.function is not None:
-			self.function()
-
 		if self.choices != {}:
 			print(
 				"{0}: {1} Choices: {2}".format(
-					self.name      ,
+					self.name,
 					self.desc_enter,
 					', '.join([key for key, value in self.choices.items()])
 				)
 			)
 		else:
 			print(
-				"{0}: {1} Choices: {2}".format(
-					self.name      ,
+				"{0}: {1}".format(
+					self.name,
 					self.desc_enter,
 				)
 			)
+		if self.function is not None:
+			self.function()
 			
-	def _position_exit(self):
+	def position_exit(self):
 		"""
 		Output the various data associated with a MapPosition when
 		the player exits the MapPosition.
