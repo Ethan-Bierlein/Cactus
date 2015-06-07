@@ -13,20 +13,21 @@ GAME_MAP = GameMap([
             "left": 1,
             "right": 2,
         },
+        {}
     ),
     MapPosition(
         "Left",
         "You took the left path and died.",
         "",
         {},
-        function=exit,
+        {"map_position.left.enter.a": exit}
     ),
     MapPosition(
         "Right",
         "You took the right path and lived!",
         "",
         {},
-        function=exit,
+        {"map_position.right.enter.a": exit}
     ),
 ])
 
@@ -39,7 +40,8 @@ MAIN_GAME = MainGame(
     GAME_MAP,
     True,
     True,
-    "This is what the game is all about"
+    "This is what the game is all about",
+    {}
 )
 
 
