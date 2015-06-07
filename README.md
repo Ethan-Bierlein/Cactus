@@ -10,7 +10,7 @@
 
 ## Setup:
 
-Please see our license. **You are required to add attribution** (again, see license for details).
+Please see our license. **You are required to add attribution** (again, see license for details). By default, this attribution is included in the `about` command.
 
 ## Contact/Help:
 
@@ -24,6 +24,7 @@ We more or less follow the **[PEP style guide](https://www.python.org/dev/peps/p
 
 - For classes, we use the argument `self` instead of `cls`, as PEP 8 requires
 - We allow extra spaces around assignment
+- Always use double quotes
 
 Feel free to do a PR and check out our issues. Contact us if you have any questions or concerns.
 
