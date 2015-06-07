@@ -35,6 +35,8 @@ class MainGame(object):
         """
         Start playing the user-created game.
         """
+        print(self.name)
+        print(self.desc)
         print("Special commands: `help`, `about`.")
         
         while True:
