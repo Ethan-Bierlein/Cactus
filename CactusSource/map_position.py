@@ -1,7 +1,7 @@
 class MapPosition(object):
 	"""
 	Stores general data about a position on the
-	map. A MapPosition instance contains the 
+	map. A MapPosition instance contains the
 	following data.
 	
 		name       - The name of the MapPosition.
@@ -19,8 +19,8 @@ class MapPosition(object):
 		
 	def position_enter(self):
 		"""
-		Output the various data associated with a MapPosition when 
-		the player enters the MapPosition. 
+		Output the various data associated with a MapPosition when
+		the player enters the MapPosition.
 		"""
 		if self.choices != {}:
 			print(
