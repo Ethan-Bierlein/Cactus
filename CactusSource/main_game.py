@@ -13,7 +13,7 @@ class MainGame(object):
         about_text        - The text to be printed out when the user types the `about` command.
         event_handlers    - A dictionary of optional event handlers.
     """
-    def __init__(self, name: str, desc: str, prompt: str, invalid_input_msg: str, map, should_lower_text: bool, allow_help: bool, about_text: str, event_handlers):
+    def __init__(self, name: str, desc: str, prompt: str, invalid_input_msg: str, map, should_lower_text: bool, allow_help: bool, about_text: str, event_handlers: dict):
         self.name              = name
         self.desc              = desc
         self.prompt            = prompt
@@ -34,6 +34,10 @@ class MainGame(object):
             map_position.set_game(self)
         
     def _handle_event(self, event_name: str):
+        """
+        Calls _run_handled_event with context-specific
+        arguments.
+        """
         self._run_handled_event("game." + event_name)
         
     def _run_handled_event(self, event_name: str):
@@ -42,20 +46,18 @@ class MainGame(object):
         """
         event_data = event_name.split(".")
         
-        if event_data[0] == "game":
-            if event_name in self.event_handlers:
+        if event_name in self.event_handlers:
+            print(self.map.data[self.map_position].name)
+            if event_data[0] == "game" or (event_data[0] == "map_position" and self._conditional_lower(self.map.data[self.map_position].name) == event_data[1]):
                 function = self.event_handlers[event_name]
-                if function != None:
-                    function()
-        elif event_data[0] == "map_position" and self.map.find_by_name(event_data[1]) != -1:
-            map_position = self.map.data[self.map.find_by_name(event_data[1])]
-            
-            if event_name in map_position.event_handlers:
-                function = map_position.event_handlers[event_name]
                 if function != None:
                     function()
         
     def _conditional_lower(self, text: str):
+        """
+        It performs the equivalent of the .lower() method
+        on the string, only if case should be ignored.
+        """
         if self.should_lower_text:
             return text.lower()
         else:
@@ -65,11 +67,11 @@ class MainGame(object):
         """
         Start playing the user-created game.
         """
-        self._handle_event("intro_msg.b")
+        self._handle_event("intro_msg.before")
         print(self.name)
         print(self.desc)
         print("Special commands: `help`, `about`.")
-        self._handle_event("intro_msg.a")
+        self._handle_event("intro_msg.after")
         
         while True:
             map_position_data = self.map.data[self.map_position]
@@ -78,34 +80,34 @@ class MainGame(object):
             if self.map_position != self.last_map_position:
                 map_position_data.position_enter()
             
-            self._handle_event("prompt.b")
+            self._handle_event("prompt.before")
             user_input = input(self.prompt)
-            self._handle_event("prompt.a")
+            self._handle_event("prompt.after")
             
             cached_map_position = self.map_position  # In case `self.map_position` gets changed below.
             
             if self._conditional_lower(user_input) in choices:
-                self._handle_event("handle_valid_command.b")
-                self._handle_event("map_position." + map_position_data.name + ".command." + self._conditional_lower(user_input) + ".b")
+                self._handle_event("handle_valid_command.before")
+                self._handle_event("map_position." + map_position_data.name + ".command." + self._conditional_lower(user_input) + ".before")
                 self.map_position = choices[self._conditional_lower(user_input)]
                 map_position_data.position_exit()
-                self._handle_event("map_position." + map_position_data.name + ".command." + self._conditional_lower(user_input) + ".a")
-                self._handle_event("handle_valid_command.a")
+                self._handle_event("map_position." + map_position_data.name + ".command." + self._conditional_lower(user_input) + ".after")
+                self._handle_event("handle_valid_command.after")
             elif self._conditional_lower(user_input) == "help" and self.allow_help:
-                self._handle_event("handle_help.b")
+                self._handle_event("handle_help.before")
                 print("You have the following choices:")
                 print(
                     ' - ' + '\n - '.join([key for key, value in map_position_data.choices.items()])
                 )
-                self._handle_event("handle_help.a")
+                self._handle_event("handle_help.after")
             elif self._conditional_lower(user_input) == "about":
-                self._handle_event("handle_about.b")
+                self._handle_event("handle_about.before")
                 print(self.about_text)
                 print("This product includes software developed by The Cactus Project (http://shearofdoom.github.io/Cactus/) and its contributors.")
-                self._handle_event("handle_about.a")
+                self._handle_event("handle_about.after")
             else:
-                self._handle_event("handle_incorrect_command.b")
+                self._handle_event("handle_incorrect_command.before")
                 print(self.invalid_input_msg)
-                self._handle_event("handle_incorrect_command.a")
+                self._handle_event("handle_incorrect_command.after")
             
             self.last_map_position = cached_map_position

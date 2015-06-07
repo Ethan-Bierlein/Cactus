@@ -8,15 +8,13 @@ class MapPosition(object):
         desc_enter - A description of the MapPosition displayed when the player enters.
         desc_exit  - A description of the MapPosition displayed when the player exits.
         choices    - A dictionary referencing other possible choices, e.g, indexes in the map.
-        event_handlers    - A dictionary of optional event handlers.
     """
-    def __init__(self, name: str, desc_enter: str, desc_exit: str, choices: dict, event_handlers):
-        self.name           = name
-        self.desc_enter     = desc_enter
-        self.desc_exit      = desc_exit
-        self.choices        = choices
-        self.event_handlers = event_handlers
-        self.game           = None
+    def __init__(self, name: str, desc_enter: str, desc_exit: str, choices: dict):
+        self.name       = name
+        self.desc_enter = desc_enter
+        self.desc_exit  = desc_exit
+        self.choices    = choices
+        self.game       = None
         
     def set_game(self, game):
         """
@@ -25,6 +23,10 @@ class MapPosition(object):
         self.game = game
         
     def _handle_event(self, event_name: str):
+        """
+        Calls MainGame._run_handled_event with
+        context-specific arguments.
+        """
         self.game._run_handled_event("map_position." + self.game._conditional_lower(self.name) + "." + event_name)
         
     def position_enter(self):
@@ -32,7 +34,7 @@ class MapPosition(object):
         Output the various data associated with a MapPosition when
         the player enters the MapPosition.
         """
-        self._handle_event("enter.b")
+        self._handle_event("enter.before")
         if self.choices != {}:
             if self.game.allow_help:
                 print(
@@ -57,13 +59,13 @@ class MapPosition(object):
                 )
             )
         
-        self._handle_event("enter.a")
+        self._handle_event("enter.after")
             
     def position_exit(self):
         """
         Output the various data associated with a MapPosition when
         the player exits the MapPosition.
         """
-        self._handle_event("exit.b")
+        self._handle_event("exit.before")
         print(self.desc_exit)
-        self._handle_event("exit.a")
+        self._handle_event("exit.after")
