@@ -97,7 +97,7 @@ class MainGame(object):
                 self._handle_event("handle_help.before")
                 print("You have the following choices:")
                 print(
-                    ' - ' + '\n - '.join([key for key, value in map_position_data.choices.items()])
+                    " - " + "\n - ".join([key for key, value in map_position_data.choices.items()])
                 )
                 self._handle_event("handle_help.after")
             elif self._conditional_lower(user_input) == "about":
