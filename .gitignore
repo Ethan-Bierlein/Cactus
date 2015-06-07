@@ -1,3 +1,8 @@
+# Python cache files
+
+__pycache__/*
+*/__pycache__/*
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
