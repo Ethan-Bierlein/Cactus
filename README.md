@@ -1,4 +1,6 @@
-# Cactus Text Game Engine
+![Cactus' Logo](http://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/PEO-cactus.svg/64px-PEO-cactus.svg.png)
+
+# Cactus Text Game Engine 
 
 ---
 
