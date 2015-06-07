@@ -35,10 +35,10 @@ class MainGame(object):
             choices           = map_position_data.choices
             
             map_position_data.position_enter()
-            user_input = input(self.prompt)
+            user_input = input("\n" + self.prompt)
             
             if self._conditional_lower(user_input) in choices:
                 self.map_position = choices[self._conditional_lower(user_input)]
                 map_position_data.position_exit()
             else:
-                print(self.invalid_input_msg)
+                print("\n\n" + self.invalid_input_msg)
