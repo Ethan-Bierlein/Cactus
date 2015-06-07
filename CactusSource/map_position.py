@@ -24,17 +24,17 @@ class MapPosition(object):
         """
         if self.choices != {}:
             print(
-                "{0}: {1} Choices: {2}".format(
+                "{0}: {1} {2}".format(
                     self.name,
-                    self.desc_enter,
-                    ', '.join([key for key, value in self.choices.items()])
+                    "\n\n" + self.desc_enter,
+                    "\n\n" + "Choices: " + ', '.join([key for key, value in self.choices.items()])
                 )
             )
         else:
             print(
                 "{0}: {1}".format(
                     self.name,
-                    self.desc_enter,
+                    "\n\n" + self.desc_enter,
                 )
             )
         if self.function is not None:
@@ -45,4 +45,4 @@ class MapPosition(object):
         Output the various data associated with a MapPosition when
         the player exits the MapPosition.
         """
-        print(self.desc_exit)
+        print("\n\n" + self.desc_exit + "\n\n")
