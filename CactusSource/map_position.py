@@ -17,24 +17,32 @@ class MapPosition(object):
         self.choices    = choices
         self.function   = function
         
-    def position_enter(self):
+    def position_enter(self, allow_help):
         """
         Output the various data associated with a MapPosition when
         the player enters the MapPosition.
         """
         if self.choices != {}:
-            print(
-                "{0}: {1} Choices: {2}".format(
-                    self.name,
-                    self.desc_enter,
-                    ', '.join([key for key, value in self.choices.items()])
+            if allow_help:
+                print(
+                    "{0}: {1} Choices: {2}".format(
+                        self.name,
+                        self.desc_enter,
+                        ', '.join([key for key, value in self.choices.items()])
+                    )
                 )
-            )
+            else:
+                print(
+                    "{0}: {1}".format(
+                        self.name,
+                        self.desc_enter
+                    )
+                )
         else:
             print(
                 "{0}: {1}".format(
                     self.name,
-                    self.desc_enter,
+                    self.desc_enter
                 )
             )
         if self.function is not None:

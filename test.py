@@ -38,6 +38,8 @@ MAIN_GAME = MainGame(
     "Uh-oh! Wrong input!",
     GAME_MAP,
     True,
+    True,
+    "This is what the game is all about"
 )
 
 
