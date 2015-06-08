@@ -33,4 +33,4 @@ Feel free to do a PR and check out our issues. Contact us if you have any questi
 
 All content in this repository (unless otherwise noted or externally hosted) is licensed under a **modified** MIT license. **By contributing, you agree to license your content under the same license.**
 
-A copy of this is provided in the `LICENSE.txt` file.
+A copy of this is provided in the `Information/LICENSE.txt` file.
