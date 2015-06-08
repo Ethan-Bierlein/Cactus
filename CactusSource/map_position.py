@@ -41,7 +41,7 @@ class MapPosition(object):
                     "{0}: {1} Choices: {2}".format(
                         self.name,
                         self.desc_enter,
-                        ', '.join([key for key, value in self.choices.items()])
+                        ", ".join([key for key, value in self.choices.items()])
                     )
                 )
             else:
