@@ -2,20 +2,51 @@
 <html lang="en-us">
 <head>
   <meta charset="UTF-8">
-  <title>{{ page.title }} | Cactus Game Engine</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+  
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-  <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  
+  <link rel="stylesheet" type="text/css" href="http://shearofdoom.github.io/Cactus/stylesheets/normalize.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="http://shearofdoom.github.io/Cactus/stylesheets/stylesheet.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="http://shearofdoom.github.io/Cactus/stylesheets/github-light.css" media="screen">
+  
+  <title>{{ page.title }} | Cactus Game Engine{% if page.site_area == "Tutorials" %} Tutorials{% elsif page.site_area == "Docs" %} Docs{% endif %}</title>
 </head>
 <body>
   <section class="page-header">
-    <h1 class="project-name">Cactus</h1>
+    <h2>
+      {% if page.site_area == "Home" %}
+        Home
+      {% else %}
+        <a href="http://shearofdoom.github.io/Cactus/">Home</a>
+      {% endif %}
+      
+      |
+      
+      {% if page.site_area == "Tutorials" %}
+        Tutorials
+      {% else %}
+        <a href="https://shearofdoom.github.io/Cactus/Tutorials">Tutorials</a>
+      {% endif %}
+      
+      |
+      
+      {% if page.site_area == "Docs" %}
+        Docs
+      {% else %}
+        <a href="https://shearofdoom.github.io/Cactus/Docs">Docs</a>
+      {% endif %}
+      
+      |
+      
+      <a href="https://github.com/ShearOfDoom/Cactus/">GitHub</a>
+    </h2>
+    <h1 class="project-name">Cactus <img style="vertical-align:middle" src="http://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/PEO-cactus.svg/64px-PEO-cactus.svg.png" alt="Cactus' Logo"></h1>
     <h2 class="project-tagline">A simple Python engine for creating text-based adventure games.</h2>
-    <a href="https://github.com/ShearOfDoom/Cactus" class="btn">View on GitHub</a>
-    <a href="https://github.com/ShearOfDoom/Cactus/zipball/master" class="btn">Download .zip</a>
-    <a href="https://github.com/ShearOfDoom/Cactus/tarball/master" class="btn">Download .tar.gz</a>
+    {% if page.site_area == "Home" %}
+      <a href="https://github.com/ShearOfDoom/Cactus/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/ShearOfDoom/Cactus/tarball/master" class="btn">Download .tar.gz</a>
+    {% endif %}
   </section>
   
   <section class="main-content">
