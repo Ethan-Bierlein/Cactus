@@ -11,6 +11,6 @@ Cactus is a simple, yet flexible, game engine that was inspired by **[Zork](http
 
 - Easy game modeling
 - Simple syntax
-- Flexible event handler that you can use to run custom functions when a certain event happens.
+- Flexible event handler that you can use to run custom functions when a certain event happens
 - Works right out of the box with little customization required
 - Choices for even minor details to make the game truly *yours*
