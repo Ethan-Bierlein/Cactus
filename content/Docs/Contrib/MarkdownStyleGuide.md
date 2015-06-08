@@ -88,12 +88,10 @@ permalink: /Docs/Contrib/MarkdownStyleGuide/
 
 ### Example:
 
-```markdown
-- First Element
-- Second Element
-- Third Element
-- Another First Element
-```
+    - First Element
+    - Second Element
+    - Third Element
+    - Another First Element
 
 ## Tables:
 
