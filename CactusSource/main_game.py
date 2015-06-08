@@ -19,9 +19,7 @@ class MainGame(object):
         self.prompt            = prompt
         self.invalid_input_msg = invalid_input_msg
         self.map               = map
-        
         self.map.set_game(self)
-        
         self.should_lower_text = should_lower_text
         self.allow_help        = allow_help
         self.about_text        = about_text
@@ -62,15 +60,30 @@ class MainGame(object):
             return text.lower()
         else:
             return text
+            
+    def _evaluate_possible_choices(self):
+        """
+        Evaluates the possible choices in each MapPosition
+        and determines if the referenced indexes for each
+        choice are valid.
+        """
+        map_data = self.map.data
+        for position in map_data:
+            for key, value in position.choices.items():
+                if value <= len(map_data) - 1:
+                    continue
+                else:
+                    raise ValueError("Invalid reference index.")
         
     def play_game(self):
         """
         Start playing the user-created game.
         """
+        self._evaluate_possible_choices()
         self._handle_event("intro_msg.before")
         print(self.name)
         print(self.desc)
-        print("Special commands: `help`, `about`.")
+        print("Special commands: \"help\", \"about\".")
         self._handle_event("intro_msg.after")
         
         while True:
@@ -93,6 +106,7 @@ class MainGame(object):
                 map_position_data.position_exit()
                 self._handle_event("map_position." + map_position_data.name + ".command." + self._conditional_lower(user_input) + ".after")
                 self._handle_event("handle_valid_command.after")
+				
             elif self._conditional_lower(user_input) == "help" and self.allow_help:
                 self._handle_event("handle_help.before")
                 print("You have the following choices:")
@@ -100,11 +114,13 @@ class MainGame(object):
                     ' - ' + '\n - '.join([key for key, value in map_position_data.choices.items()])
                 )
                 self._handle_event("handle_help.after")
+				
             elif self._conditional_lower(user_input) == "about":
                 self._handle_event("handle_about.before")
                 print(self.about_text)
                 print("This product includes software developed by The Cactus Project (http://shearofdoom.github.io/Cactus/) and its contributors.")
                 self._handle_event("handle_about.after")
+				
             else:
                 self._handle_event("handle_incorrect_command.before")
                 print(self.invalid_input_msg)

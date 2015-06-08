@@ -1,4 +1,3 @@
-
 from sys import exit 
 from CactusSource.map_position import MapPosition 
 from CactusSource.game_map import GameMap 
