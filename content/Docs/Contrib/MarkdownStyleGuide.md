@@ -40,21 +40,19 @@ permalink: /Docs/Contrib/MarkdownStyleGuide/
 
 ### Example:
 
-```markdown
-# A Very Important Document:
+    # A Very Important Document:
 
-## Introduction:
+    ## Introduction:
 
-## Description of Problem:
+    ## Description of Problem:
 
-## Proposed Solution:
+    ## Proposed Solution:
 
-### Execution:
+    ### Execution:
 
-### Cost:
-
-## Conclusion:
-```
+    ### Cost:
+    
+    ## Conclusion:
 
 ## Whitespace/Newlines:
 
@@ -66,20 +64,19 @@ permalink: /Docs/Contrib/MarkdownStyleGuide/
 
 ## Code:
 
-- Use the ` ``` ` notation for a block of code whenever possible instead of the four space indentation
 - Always use a "language tag" or equivalent to tell the interpreter how to highlight the syntax
 - With GitHub Markdown, you can write the language on the opening line (see example below)
 - Leave a blank line before and after
 
 ### Example:
 
-<!--Note: I had to break this rule below because I can't have backticks in backticks :)-->
-
-````c++
-int sum(int x, int y) {
-  return x + y;
-}
-```
+    [Some other content]
+    
+        int sum(int x, int y) {
+          return x + y;
+        }
+    
+    [More content]
 
 ## Lists:
 
@@ -106,14 +103,12 @@ int sum(int x, int y) {
 
 ### Example:
 
-```markdown
-Employee ID | Name         | Favorite Beverage
------------ | ------------ | -----------------
-1           | Bobby Tables | Water
-2           | Matthew      | Dr. Pepper
-3           | No Name      | Snapple Tea
-4           | A Person     | N/A
-```
+    Employee ID | Name         | Favorite Beverage
+    ----------- | ------------ | -----------------
+    1           | Bobby Tables | Water
+    2           | Matthew      | Dr. Pepper
+    3           | No Name      | Snapple Tea
+    4           | A Person     | N/A
 
 ## Comments:
 
