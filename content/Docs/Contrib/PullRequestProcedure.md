@@ -10,7 +10,7 @@ permalink: /Docs/Contrib/PullRequestProcedure/
 1. Fork our repo
 2. Edit the content
 3. Submit a PR (pull request)
-4. Do anything
+4. Do anything requested by the team
 
 ## Check-In Process (Team Members Only):
 
