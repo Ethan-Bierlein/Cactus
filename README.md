@@ -6,8 +6,6 @@
 
 **[Cactus](http://shearofdoom.github.io/Cactus/)** is a simple engine used to build Zork-style adventure games. Cactus is still in it's early stages of development, but will be updated as regularly as possible, and with as many new features as possible. I hope you enjoy Cactus!
 
-> *"Cactus is the best"* - The Creator
-
 ## Setup:
 
 Please see our license. **You are required to add attribution** (again, see license for details). By default, this attribution is included in the `about` command.
