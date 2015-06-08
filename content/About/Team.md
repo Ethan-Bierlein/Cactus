@@ -5,13 +5,11 @@ layout: default
 permalink: /About/Team/
 ---
 
-## Ethan Bierlein
+## Ethan Bierlein:
 
 #### Contact: ebr4d[at]live.com, [GitHub](https://github.com/ShearOfDoom), [The 2nd Monitor (SE Chat)](http://chat.stackexchange.com/rooms/24299/discussion-about-cactus)
 
-<a href="http://codereview.stackexchange.com/users/53251/ethan-bierlein">
-<img src="http://codereview.stackexchange.com/users/flair/53251.png" width="208" height="58" alt="profile for Ethan Bierlein at Code Review Stack Exchange, Q&amp;A for peer programmer code reviews" title="profile for Ethan Bierlein at Code Review Stack Exchange, Q&amp;A for peer programmer code reviews">
-</a>
+<a href="http://stackexchange.com/users/4280743/ethan-bierlein"><img src="http://stackexchange.com/users/flair/4280743.png" width="208" height="58" alt="profile for Ethan Bierlein on Stack Exchange, a network of free, community-driven Q&amp;A sites" title="profile for Ethan Bierlein on Stack Exchange, a network of free, community-driven Q&amp;A sites" /></a>
 
 Ethan Bierlein is of those <strike>wierdos</strike> developers working on [Cactus](https://github.com/ShearOfDoom/Cactus), a game engine used to build text-based adventure games (think Zork). He hopes to someday get into professional game design, and even design his own game!
 
@@ -20,7 +18,7 @@ Ethan Bierlein is of those <strike>wierdos</strike> developers working on [Cactu
 #### Contact: annonomuspenguin[at]gmail.com, [GitHub](https://github.com/Annonomus-Penguin), [@AnnonPenguin](https://twitter.com/AnnonPenguin)
 
 <a href="http://stackexchange.com/users/1640390">
-<img src="http://stackexchange.com/users/flair/1640390.png?theme=dark" width="208" height="58" alt="profile for Annonomus Person on Stack Exchange, a network of free, community-driven Q&amp;A sites" title="profile for Annonomus Person on Stack Exchange, a network of free, community-driven Q&amp;A sites"></a>
+<img src="http://stackexchange.com/users/flair/1640390.png" width="208" height="58" alt="profile for Annonomus Person on Stack Exchange, a network of free, community-driven Q&amp;A sites" title="profile for Annonomus Person on Stack Exchange, a network of free, community-driven Q&amp;A sites"></a>
 
 A self-taught Arduino hobbyist. Geek at heart. Mod on: [Arduino Beta](http://arduino.stackexchange.com), [Community Building Beta](http://communitybuilding.stackexchange.com/). Lover of Jazz music and guacamole.
 

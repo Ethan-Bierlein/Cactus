@@ -2,7 +2,7 @@
 title: Installation Guide
 site_area: Docs
 layout: default
-permalink: /Docs/Installation/
+permalink: /Docs/v0.1.0-alpha/Installation/
 ---
 
 It's super easy to install Cactus:
