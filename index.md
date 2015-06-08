@@ -1,5 +1,6 @@
 ---
 title: Home
+layout: default
 ---
 
 ![Cactus' Logo](http://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/PEO-cactus.svg/64px-PEO-cactus.svg.png)
