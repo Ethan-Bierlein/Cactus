@@ -1,15 +1,7 @@
-<<<<<<< HEAD
 from sys import exit 
 from CactusSource.map_position import MapPosition 
 from CactusSource.game_map import GameMap 
 from CactusSource.main_game import MainGame 
-=======
-
-from sys import exit
-from CactusSource.map_position import MapPosition
-from CactusSource.game_map import GameMap
-from CactusSource.main_game import MainGame
->>>>>>> cd43e3bd0b3776d9b913ff4e5b94030db4503461
 
 
 game_map = GameMap([
