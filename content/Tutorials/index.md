@@ -5,6 +5,4 @@ layout: default
 permalink: /Tutorials/
 ---
 
-# Tutorials:
-
 [No tutorials are available at this time. :'(]

@@ -23,7 +23,7 @@
       
       |
       
-      {% if page.site_area == "Home" %}
+      {% if page.site_area == "About" %}
         About
       {% else %}
         <a href="{{ site.base_url }}/About/">About</a>
@@ -34,7 +34,7 @@
       {% if page.site_area == "Tutorials" %}
         Tutorials
       {% else %}
-        <a href="https://shearofdoom.github.io/Cactus/Tutorials">Tutorials</a>
+        <a href="{{ site.base_url }}/Tutorials">Tutorials</a>
       {% endif %}
       
       |
@@ -42,7 +42,7 @@
       {% if page.site_area == "Docs" %}
         Docs
       {% else %}
-        <a href="https://shearofdoom.github.io/Cactus/Docs">Docs</a>
+        <a href="{{ site.base_url }}/Docs">Docs</a>
       {% endif %}
     </h2>
     <h4>
@@ -62,15 +62,18 @@
   </section>
   
   <section class="main-content">
-    
-    <a href="{{ site.base_url }}/">Home</a> &#187;
     {% assign url_blocks = page.url | split: "/" %}
     {% for block in url_blocks %}
-    {% if forloop.last %}
-    This Page
-    {% else %}
-    <a href="{{ site.base_url }}/{% for part_of_link in url_blocks limit: forloop.index | plus 1 %}{{ part_of_link }}/{% endfor %}">{{ block }}</a> &#187;
-    {% endif %}
+      {% if forloop.first %}
+        {% if forloop.length != 1 %}
+          <a href="{{ site.base_url }}/">Home</a>
+        {% endif %}
+      {% elsif forloop.last %}
+        &#187; This Page
+      {% else %}
+      {% assign number_of_segments = forloop.index | minus: 1 %}
+      &#187; <a href="{{ site.base_url }}/{% for part_of_link in url_blocks limit: number_of_segments offset: 1 %}{{ part_of_link }}/{% endfor %}">{{ block }}</a>
+      {% endif %}
     {% endfor %}
     
     <h1>{{ page.title }}:</h1>
