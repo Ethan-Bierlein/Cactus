@@ -23,3 +23,11 @@ Ethan Bierlein is of those <strike>wierdos</strike> developers working on [Cactu
 <img src="http://stackexchange.com/users/flair/1640390.png?theme=dark" width="208" height="58" alt="profile for Annonomus Person on Stack Exchange, a network of free, community-driven Q&amp;A sites" title="profile for Annonomus Person on Stack Exchange, a network of free, community-driven Q&amp;A sites"></a>
 
 A self-taught Arduino hobbyist. Geek at heart. Mod on: [Arduino Beta](http://arduino.stackexchange.com), [Community Building Beta](http://communitybuilding.stackexchange.com/). Lover of Jazz music and guacamole.
+
+## QPaysTaxes
+
+#### Contact: <a href="mailto:newbiedoodle@gmail.com">newbiedoodle@gmail.com</a>
+
+<a href="http://stackexchange.com/users/2094462/qpaystaxes"><img src="http://stackexchange.com/users/flair/2094462.png" width="208" height="58" alt="profile for QPaysTaxes on Stack Exchange, a network of free, community-driven Q&amp;A sites" title="profile for QPaysTaxes on Stack Exchange, a network of free, community-driven Q&amp;A sites" /></a>
+
+I like Ruby, but Python is okay too.
