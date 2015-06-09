@@ -1,3 +1,5 @@
+from .errors import cactus_class_method_exception_handle
+
 class Position(object):
     """
     Stores general data about a position on the
@@ -15,6 +17,7 @@ class Position(object):
         self._conditional_lower = None
         self._check_class_data()
         
+    @cactus_class_method_exception_handle
     def _check_class_data(self):
         """
         Iterate over the contained class data in self.class_data
@@ -36,7 +39,8 @@ class Position(object):
                 continue
             else:
                 raise KeyError("Key {0} is invalid.".format(key))
-        
+    
+    @cactus_class_method_exception_handle
     def set_game(self, game):
         """
         Sets the game instance this object belongs to.
@@ -44,6 +48,7 @@ class Position(object):
         self.game               = game
         self._conditional_lower = self.game._conditional_lower
         
+    @cactus_class_method_exception_handle
     def _handle_event(self, event_name: str):
         """
         Calls Game._run_handled_event with
@@ -51,6 +56,7 @@ class Position(object):
         """
         self.game._run_handled_event("position." + self._conditional_lower(self.class_data["name"]) + "." + event_name)
         
+    @cactus_class_method_exception_handle
     def position_enter(self):
         """
         Output the various data associated with a Position when
@@ -83,6 +89,7 @@ class Position(object):
         
         self._handle_event("enter.after")
             
+    @cactus_class_method_exception_handle
     def position_exit(self):
         """
         Output the various data associated with a Position when

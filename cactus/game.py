@@ -1,4 +1,5 @@
 from .flowchart import Flowchart
+from .errors import cactus_class_method_exception_handle
 
 class Game(object):
     """
@@ -26,6 +27,7 @@ class Game(object):
         for position in self.class_data["flowchart"].class_data["data"]:
             position.set_game(self)
         
+    @cactus_class_method_exception_handle
     def _check_class_data(self):
         """
         Iterate over the contained class data in self.class_data
@@ -55,7 +57,8 @@ class Game(object):
                 continue
             else:
                 raise KeyError("Key {0} is invalid.".format(key))
-        
+    
+    @cactus_class_method_exception_handle
     def _handle_event(self, event_name: str):
         """
         Calls _run_handled_event with context-specific
@@ -67,7 +70,8 @@ class Game(object):
         self.class_data["flowchart"]._check_class_data()
         for item in self.class_data["flowchart"].class_data["data"]:
             item._check_class_data()
-        
+    
+    @cactus_class_method_exception_handle
     def _run_handled_event(self, event_name: str):
         """
         Looks for the event and runs it, if it is there.
@@ -81,7 +85,8 @@ class Game(object):
                 function                    = event_handlers_lowered_keys[event_name]
                 if function != None:
                     function()
-        
+    
+    @cactus_class_method_exception_handle
     def _conditional_lower(self, text: str):
         """
         It performs the equivalent of the .lower() method
@@ -92,6 +97,7 @@ class Game(object):
         else:
             return text.lower()
         
+    @cactus_class_method_exception_handle
     def _conditional_lower_list(self, input_data: list):
         """
         Performs `_conditional_lower()` on all of the
@@ -103,6 +109,7 @@ class Game(object):
         
         return output_data
         
+    @cactus_class_method_exception_handle
     def _conditional_lower_dict_keys(self, input_data: dict):
         output_data = {}
         for key, value in input_data.items():
@@ -110,6 +117,7 @@ class Game(object):
         
         return output_data
             
+    @cactus_class_method_exception_handle
     def _evaluate_possible_choices(self):
         """
         Evaluates the possible choices in each Position
@@ -124,68 +132,60 @@ class Game(object):
                 else:
                     raise ValueError("Invalid reference index.")
         
+    @cactus_class_method_exception_handle
     def play_game(self):
         """
         Start playing the user-created game.
         """
-        try:
-            self._evaluate_possible_choices()
-            self._handle_event("intro_msg.before")
-            print(self.class_data["name"])
-            print(self.class_data["desc"])
-            print("Special commands: \"help\", \"about\".")
-            self._handle_event("intro_msg.after")
+        self._evaluate_possible_choices()
+        self._handle_event("intro_msg.before")
+        print(self.class_data["name"])
+        print(self.class_data["desc"])
+        print("Special commands: \"help\", \"about\".")
+        self._handle_event("intro_msg.after")
         
-            while True:
-                position_data = self.class_data["flowchart"].class_data["data"][self.position]
-                choices       = position_data.class_data["choices"]
+        while True:
+            position_data = self.class_data["flowchart"].class_data["data"][self.position]
+            choices       = position_data.class_data["choices"]
             
-                if self.position != self.last_position:
-                    position_data.position_enter()
+            if self.position != self.last_position:
+                position_data.position_enter()
             
-                self._handle_event("prompt.before")
-                user_input = input(self.class_data["prompt"])
-                self._handle_event("prompt.after")
+            self._handle_event("prompt.before")
+            user_input = input(self.class_data["prompt"])
+            self._handle_event("prompt.after")
             
-                cached_position = self.position  # In case `self.position` gets changed below.
+            cached_position = self.position  # In case `self.position` gets changed below.
             
-                if self._conditional_lower(user_input) in self._conditional_lower_list(choices):
-                    self._handle_event("handle_valid_command.before")
-                    self._handle_event("position." + position_data.class_data["name"] + ".command." + user_input + ".before")
-                    self.position = self._conditional_lower_dict_keys(choices)[self._conditional_lower(user_input)]
-                    position_data.position_exit()
-                    self._handle_event("position." + position_data.class_data["name"] + ".command." + user_input + ".after")
-                    self._handle_event("handle_valid_command.after")
+            if self._conditional_lower(user_input) in self._conditional_lower_list(choices):
+                self._handle_event("handle_valid_command.before")
+                self._handle_event("position." + position_data.class_data["name"] + ".command." + user_input + ".before")
+                self.position = self._conditional_lower_dict_keys(choices)[self._conditional_lower(user_input)]
+                position_data.position_exit()
+                self._handle_event("position." + position_data.class_data["name"] + ".command." + user_input + ".after")
+                self._handle_event("handle_valid_command.after")
                 
-                elif self._conditional_lower(user_input) == "help" and self.class_data["allow_help"]:
-                    self._handle_event("handle_help.before")
-                    print("You have the following choices:")
-                    if len(position_data.class_data["choices"]) != 0:
-                        print(
-                            " - " + "\n - ".join([key for key, value in position_data.class_data["choices"].items()])
-                        )
+            elif self._conditional_lower(user_input) == "help" and self.class_data["allow_help"]:
+                self._handle_event("handle_help.before")
+                print("You have the following choices:")
+                if len(position_data.class_data["choices"]) != 0:
                     print(
-                        " - " + "\n - ".join(["Help", "About"])
+                        " - " + "\n - ".join([key for key, value in position_data.class_data["choices"].items()])
                     )
-                    self._handle_event("handle_help.after")
+                print(
+                    " - " + "\n - ".join(["Help", "About"])
+                )
+                self._handle_event("handle_help.after")
                 
-                elif self._conditional_lower(user_input) == "about":
-                    self._handle_event("handle_about.before")
-                    print(self.class_data["about_text"])
-                    print("This product includes software developed by The Cactus Project (http://shearofdoom.github.io/Cactus/) and its contributors.")
-                    self._handle_event("handle_about.after")
+            elif self._conditional_lower(user_input) == "about":
+                self._handle_event("handle_about.before")
+                print(self.class_data["about_text"])
+                print("This product includes software developed by The Cactus Project (http://shearofdoom.github.io/Cactus/) and its contributors.")
+                self._handle_event("handle_about.after")
                 
-                else:
-                    self._handle_event("handle_incorrect_command.before")
-                    print(self.class_data["invalid_input_msg"])
-                    self._handle_event("handle_incorrect_command.after")
+            else:
+                self._handle_event("handle_incorrect_command.before")
+                print(self.class_data["invalid_input_msg"])
+                self._handle_event("handle_incorrect_command.after")
             
-                self.last_position = cached_position
-                
-        except Exception as game_error:
-            with open("cactus_error_log.txt", "w+") as error_log:
-                print("Program has encountered an error. If you believe that this is an engine-related error, please report it at https://github.com/ShearOfDoom/Cactus/issues")
-                error_log.write("Cactus error log")
-                error_log.write("=" * int(len(str(game_error)) / 2))
-                error_log.write(str(game_error))
-                error_log.write("=" * int(len(str(game_error)) / 2))
+            self.last_position = cached_position

@@ -1,3 +1,5 @@
+from .errors import cactus_class_method_exception_handle
+
 class Flowchart(object):
     """
     Stores general data about the game flowchart. A Flowchart
@@ -10,7 +12,8 @@ class Flowchart(object):
         self.game               = None
         self._conditional_lower = None
         self._check_class_data()
-            
+    
+    @cactus_class_method_exception_handle
     def _check_class_data(self):
         """
         Iterate over the contained class data in self.class_data
@@ -32,21 +35,24 @@ class Flowchart(object):
                 continue
             else:
                 raise KeyError("Key {0} is invalid.".format(key))
-        
+    
+    @cactus_class_method_exception_handle
     def set_game(self, game):
         """
         Sets the game instance this object belongs to.
         """
         self.game = game
         self._conditional_lower = self.game._conditional_lower
-            
+    
+    @cactus_class_method_exception_handle
     def find_start(self):
         """
         This calls self.find_by_name() to find the position
         of the Position instance with the name "start".
         """
         return self.find_by_name("start")
-        
+    
+    @cactus_class_method_exception_handle
     def find_by_name(self, name: str):
         """
         This iterates over self.class_data["data"] and finds the Position
