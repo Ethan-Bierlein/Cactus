@@ -6,15 +6,17 @@ class GameMap(object):
         class_data["data"] - A list of MapPosition instances representing a game map.
     """
     def __init__(self, class_data: dict):
-        self.class_data = class_data
-        self.game = None
+        self.class_data         = class_data
+        self.game               = None
+        self._conditional_lower = None
         
     def set_game(self, game):
         """
         Sets the game instance this object belongs to.
         """
         self.game = game
-        
+        self._conditional_lower = self.game._conditional_lower
+            
     def find_start(self):
         """
         This calls self.find_by_name() to find the position
@@ -28,6 +30,6 @@ class GameMap(object):
         instance with the name specifies, and returns it's index.
         """
         for index, map_position in enumerate(self.class_data["data"]):
-            if self.game._conditional_lower(map_position.class_data["name"]) == self.game._conditional_lower(name):
+            if self._conditional_lower(map_position.class_data["name"]) == self._conditional_lower(name):
                 return index
         return -1  # Element not found

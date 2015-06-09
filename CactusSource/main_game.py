@@ -8,7 +8,7 @@ class MainGame(object):
         class_data["prompt"]            - The global prompt to be used.
         class_data["invalid_input_msg"] - A message to print if user enters invalid input.
         class_data["map"]               - The game's map data, a GameMap instance.
-        class_data["should_lower_text"] - The option to lower text or not.
+        class_data["case_sensitive"]    - If commands, event handlers, and room names should be case sensitive.
         class_data["allow_help"]        - If the game should print out the choices for the user or not.
         class_data["about_text"]        - The text to be printed out when the user types the `about` command.
         class_data["event_handlers"]    - A dictionary of optional event handlers.
@@ -36,10 +36,11 @@ class MainGame(object):
         """
         event_data = event_name.split(".")
         
-        if event_name in self.class_data["event_handlers"]:
-            print(self.class_data["map"].class_data["data"][self.map_position].class_data["name"])
-            if event_data[0] == "game" or (event_data[0] == "map_position" and self._conditional_lower(self.class_data["map"].class_data["data"][self.map_position].class_data["name"]) == event_data[1]):
-                function = self.class_data["event_handlers"][event_name]
+        if event_name in self._conditional_lower_list(self.class_data["event_handlers"]):
+            current_location_name = self.class_data["map"].class_data["data"][self.map_position].class_data["name"]
+            if event_data[0] == "game" or (event_data[0] == "map_position" and self._conditional_lower(current_location_name) == self._conditional_lower(event_data[1])):
+                event_handlers_lowered_keys = self._conditional_lower_dict_keys(self.class_data["event_handlers"])
+                function = event_handlers_lowered_keys[event_name]
                 if function != None:
                     function()
         
@@ -48,10 +49,28 @@ class MainGame(object):
         It performs the equivalent of the .lower() method
         on the string, only if case should be ignored.
         """
-        if self.class_data["should_lower_text"]:
-            return text.lower()
-        else:
+        if self.class_data["case_sensitive"]:
             return text
+        else:
+            return text.lower()
+        
+    def _conditional_lower_list(self, input_data: list):
+        """
+        Performs `_conditional_lower()` on all of the
+        items of the list.
+        """
+        output_data = []
+        for item in input_data:
+            output_data.append(self._conditional_lower(item))
+        
+        return output_data
+        
+    def _conditional_lower_dict_keys(self, input_data: dict):
+        output_data = {}
+        for key, value in input_data.items():
+            output_data[self._conditional_lower(key)] = value
+        
+        return output_data
             
     def _evaluate_possible_choices(self):
         """
@@ -91,19 +110,23 @@ class MainGame(object):
             
             cached_map_position = self.map_position  # In case `self.map_position` gets changed below.
             
-            if self._conditional_lower(user_input) in choices:
+            if self._conditional_lower(user_input) in self._conditional_lower_list(choices):
                 self._handle_event("handle_valid_command.before")
-                self._handle_event("map_position." + map_position_data.class_data["name"] + ".command." + self._conditional_lower(user_input) + ".before")
-                self.map_position = choices[self._conditional_lower(user_input)]
+                self._handle_event("map_position." + map_position_data.class_data["name"] + ".command." + user_input + ".before")
+                self.map_position = self._conditional_lower_dict_keys(choices)[self._conditional_lower(user_input)]
                 map_position_data.position_exit()
-                self._handle_event("map_position." + map_position_data.class_data["name"] + ".command." + self._conditional_lower(user_input) + ".after")
+                self._handle_event("map_position." + map_position_data.class_data["name"] + ".command." + user_input + ".after")
                 self._handle_event("handle_valid_command.after")
                 
-            elif self._conditional_lower(user_input) == "help" and self.class_data["should_lower_text"]:
+            elif self._conditional_lower(user_input) == "help" and self.class_data["allow_help"]:
                 self._handle_event("handle_help.before")
                 print("You have the following choices:")
+                if len(map_position_data.class_data["choices"]) != 0:
+                    print(
+                        " - " + "\n - ".join([key for key, value in map_position_data.choices.items()])
+                    )
                 print(
-                    " - " + "\n - ".join([key for key, value in map_position_data.choices.items()])
+                    " - " + "\n - ".join(["Help", "About"])
                 )
                 self._handle_event("handle_help.after")
                 
