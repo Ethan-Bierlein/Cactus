@@ -1,3 +1,5 @@
+from contextlib import redirect_stdout
+
 def cactus_class_method_exception_handle(function):
     """
     This function provides a general wrapper for
@@ -13,11 +15,12 @@ def cactus_class_method_exception_handle(function):
             return function(self, *args, **kwargs)
         except Exception as cactus_game_error:
             with open("cactus_error_log.txt", "w+") as cactus_error_log:
-                print("Program has encountered an error. If you believe that this is an engine-related error, please report it at https://github.com/ShearOfDoom/Cactus/issues")
-                cactus_error_log.write("Cactus error log")
-                cactus_error_log.write("=" * 15)
-                cactus_error_log.write("Class Data: " + self.class_data)
-                cactus_error_log.write("=" * 15)
-                cactus_error_log.write(str(cactus_game_error))
-                cactus_error_log.write("=" * 15)
+                with redirect_stdout(f):
+                    print("Program has encountered an error. If you believe that this is an engine-related error, please report it at https://github.com/ShearOfDoom/Cactus/issues")
+                    print("Cactus error log")
+                    print("=" * 15)
+                    print("Class Data: " + self.class_data)
+                    print("=" * 15)
+                    print(str(cactus_game_error))
+                    print("=" * 15)
     return wrapper
