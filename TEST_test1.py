@@ -7,7 +7,7 @@ from CactusSource.main_game import MainGame
 GAME_MAP = GameMap({
     "data": [
         MapPosition({
-            "name": "Start",
+            "name": "start",
             "desc_enter": "Description on enter.",
             "desc_exit": "Description on exit.",
             "choices": {
@@ -37,7 +37,7 @@ MAIN_GAME = MainGame({
     "prompt": "> ",
     "invalid_input_msg": "Invalid input",
     "map": GAME_MAP,
-    "should_lower_text": True,
+    "case_sensitive": False,
     "allow_help": True,
     "about_text": "Write about your game here.",
     "event_handlers": {

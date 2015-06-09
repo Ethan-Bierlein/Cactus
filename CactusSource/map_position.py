@@ -10,21 +10,23 @@ class MapPosition(object):
         class_data["choices"]    - A dictionary referencing other possible choices, e.g, indexes in the map.
     """
     def __init__(self, class_data: dict):
-        self.class_data = class_data
-        self.game       = None
+        self.class_data         = class_data
+        self.game               = None
+        self._conditional_lower = None
         
     def set_game(self, game):
         """
         Sets the game instance this object belongs to.
         """
         self.game = game
+        self._conditional_lower = self.game._conditional_lower
         
     def _handle_event(self, event_name: str):
         """
         Calls MainGame._run_handled_event with
         context-specific arguments.
         """
-        self.game._run_handled_event("map_position." + self.game._conditional_lower(self.class_data["name"]) + "." + event_name)
+        self.game._run_handled_event("map_position." + self._conditional_lower(self.class_data["name"]) + "." + event_name)
         
     def position_enter(self):
         """
