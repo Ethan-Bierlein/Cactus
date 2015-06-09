@@ -14,14 +14,31 @@ class Game(object):
         class_data["event_handlers"]    - A dictionary of optional event handlers.
     """
     def __init__(self, class_data: dict):
-        self.class_data = class_data
+        self.class_data       = class_data
         self.class_data["flowchart"].set_game(self)
-        self.flowchart_start = self.class_data["flowchart"].find_start()
-        self.position        = self.flowchart_start
-        self.last_position   = None
+        self.flowchart_start  = self.class_data["flowchart"].find_start()
+        self.position         = self.flowchart_start
+        self.last_position    = None
+        self._class_data_keys = [
+            "name", "desc", "prompt", "invalid_input_msg", 
+            "flowchart", "case_sensitive", "allow_help", "about_text",
+            "event_handlers"
+        ]
+        self._check_class_data()
         
         for position in self.class_data["flowchart"].class_data["data"]:
             position.set_game(self)
+        
+    def _check_class_data(self):
+        """
+        Iterate over the contained class data in self.class_data
+        and make sure that it's valid.
+        """
+        for key, value in self.class_data.items():
+            if key in self._class_data_keys:
+                continue
+            else:
+                raise KeyError("Key {0} is invalid.".format(key))
         
     def _handle_event(self, event_name: str):
         """
