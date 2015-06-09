@@ -5,12 +5,14 @@ layout: default
 permalink: /Docs/v0.1.0-alpha/
 ---
 
-## Basics:
+## Getting Started:
 
 - **[Installation Guide]({{ site.base_url }}/Docs/v0.1.0-alpha/Installation/)**
-- **[Files to Include]({{ site.base_url }}/Docs/v0.1.0-alpha/FilesToInclude/)**
+- **[Your First Game]({{ site.base_url }}/Docs/v0.1.0-alpha/FirstGame/)**
 
-## Classes:
+## Reference:
+
+### Classes:
 
 - `MainGame` Class
 - `GameMap` Class
