@@ -69,7 +69,7 @@ It has the following attributes:
 - The enter text (`Welcome to the start!`)
 - The exit text (`Now leaving the start.`)
 - Choices (a dictionary of two choices: `left` and `right`)
-  - Each choice has a number that points to the room the user will go to next if they choose that option (in this case, `left` goes to the `Left` room and `right` goes to the `Right` room)
+    - Each choice has a number that points to the room the user will go to next if they choose that option (in this case, `left` goes to the `Left` room and `right` goes to the `Right` room)
 
 ## Creating the Main Game:
 

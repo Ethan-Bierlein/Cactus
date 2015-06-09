@@ -82,7 +82,7 @@ permalink: /Contrib/MarkdownStyleGuide/
 
 - Unordered lists should use the `-` character
 - Keep each line short for readability
-- Do not indent level one list items; indent all lower levels by two spaces per level
+- Do not indent level one list items; indent all lower levels by four spaces per level
 - Have one space after the `-` character
 - Leave a blank line before and after each list
 
