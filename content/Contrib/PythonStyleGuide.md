@@ -1,8 +1,8 @@
 ---
 title: Python Style Guide
-site_area: Docs
+site_area: Contributing
 layout: default
-permalink: /Docs/Contrib/PythonStyleGuide/
+permalink: /Contrib/PythonStyleGuide/
 ---
 
 We more or less follow the **[PEP 8 style guide](https://www.python.org/dev/peps/pep-0008/).** We do have the following changes to it:

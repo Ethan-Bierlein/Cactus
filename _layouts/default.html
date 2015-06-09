@@ -31,18 +31,18 @@
       
       |
       
-      {% if page.site_area == "Tutorials" %}
-        Tutorials
-      {% else %}
-        <a href="{{ site.base_url }}/Tutorials">Tutorials</a>
-      {% endif %}
-      
-      |
-      
       {% if page.site_area == "Docs" %}
         Docs
       {% else %}
         <a href="{{ site.base_url }}/Docs">Docs</a>
+      {% endif %}
+      
+      |
+      
+      {% if page.site_area == "Contributing" %}
+        Contributing
+      {% else %}
+        <a href="{{ site.base_url }}/Contributing">Contributing</a>
       {% endif %}
     </h2>
     <h4>

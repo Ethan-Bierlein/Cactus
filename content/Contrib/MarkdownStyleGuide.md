@@ -1,8 +1,8 @@
 ---
 title: Markdown Style Guide
-site_area: Docs
+site_area: Contributing
 layout: default
-permalink: /Docs/Contrib/MarkdownStyleGuide/
+permalink: /Contrib/MarkdownStyleGuide/
 ---
 
 ## File Naming Convention:

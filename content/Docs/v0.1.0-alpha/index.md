@@ -7,7 +7,8 @@ permalink: /Docs/v0.1.0-alpha/
 
 ## Basics:
 
-- **[Installation Guide]({{ site.base_url }}/Docs/Installation/)**
+- **[Installation Guide]({{ site.base_url }}/Docs/v0.1.0-alpha/Installation/)**
+- **[Files to Include]({{ site.base_url }}/Docs/v0.1.0-alpha/FilesToInclude/)**
 
 ## Classes:
 

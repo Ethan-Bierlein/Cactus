@@ -1,8 +1,8 @@
 ---
 title: Contributor's Guide
-site_area: Docs
+site_area: Contributing
 layout: default
-permalink: /Docs/Contrib/
+permalink: /Contrib/
 ---
 
 Do you love Cactus and want to help out with development? We'd love to have you!
@@ -27,10 +27,10 @@ A much easier way to support us would be to give a shoutout on Twitter and tell 
 
 ### Procedures:
 
-- **[Pull request procedure]({{ site.base_url }}/Docs/Contrib/PullRequestProcedure/)**
-- **[New version procedure]({{ site.base_url }}/Docs/Contrib/NewVersionProcedure/)**
+- **[Pull request procedure]({{ site.base_url }}/Contrib/PullRequestProcedure/)**
+- **[New version procedure]({{ site.base_url }}/Contrib/NewVersionProcedure/)**
 
 ### Style Guides:
 
-- **[Python Style Guide]({{ site.base_url }}/Docs/Contrib/PythonStyleGuide/)**
-- **[Markdown Style Guide]({{ site.base_url }}/Docs/Contrib/MarkdownStyleGuide/)**
+- **[Python Style Guide]({{ site.base_url }}/Contrib/PythonStyleGuide/)**
+- **[Markdown Style Guide]({{ site.base_url }}/Contrib/MarkdownStyleGuide/)**
