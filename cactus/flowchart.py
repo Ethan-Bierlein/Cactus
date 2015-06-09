@@ -16,8 +16,9 @@ class Flowchart(object):
         Iterate over the contained class data in self.class_data
         and make sure that it's valid.
         """
-        class_data_keys = [["data", list]]
-        for item in class_data_keys:
+        class_data_keys_types = [["data", list]]
+        class_data_keys       = ["data"]
+        for item in class_data_keys_types:
             if item[0] in self.class_data:
                 if type(self.class_data[item[0]]) == item[1]:
                     continue
@@ -25,6 +26,12 @@ class Flowchart(object):
                     raise TypeError("Type of item {0} is invalid.".format(item[0]))
             else:
                 raise KeyError("Could not find key {0} in class data.".format(item[0]))
+                
+        for key, value in self.class_data.items():
+            if key in class_data_keys:
+                continue
+            else:
+                raise KeyError("Key {0} is invalid.".format(key))
         
     def set_game(self, game):
         """
