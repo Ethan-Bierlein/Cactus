@@ -1,6 +1,7 @@
 from sys import exit
 import cactus
 
+
 FLOWCHART = cactus.Flowchart({
     "data": [
         cactus.Position({

@@ -1,3 +1,5 @@
+from .flowchart import Flowchart
+
 class Game(object):
     """
     Stores general data about the game. A Game instance
@@ -19,11 +21,6 @@ class Game(object):
         self.flowchart_start  = self.class_data["flowchart"].find_start()
         self.position         = self.flowchart_start
         self.last_position    = None
-        self._class_data_keys = [
-            "name", "desc", "prompt", "invalid_input_msg", 
-            "flowchart", "case_sensitive", "allow_help", "about_text",
-            "event_handlers"
-        ]
         self._check_class_data()
         
         for position in self.class_data["flowchart"].class_data["data"]:
@@ -34,11 +31,19 @@ class Game(object):
         Iterate over the contained class data in self.class_data
         and make sure that it's valid.
         """
-        for key, value in self.class_data.items():
-            if key in self._class_data_keys:
-                continue
+        class_data_keys = [
+            ["name", str], ["desc", str], ["prompt", str], ["invalid_input_msg", str], 
+            ["flowchart", Flowchart], ["case_sensitive", bool], ["allow_help", bool], ["about_text", str],
+            ["event_handlers", dict]
+        ]
+        for item in class_data_keys:
+            if item[0] in self.class_data:
+                if type(self.class_data[item[0]]) == item[1]:
+                    continue
+                else:
+                    raise TypeError("Type of item {0} is invalid.".format(item[0]))
             else:
-                raise KeyError("Key {0} is invalid.".format(key))
+                raise KeyError("Could not find key {0} in class data.".format(item[0]))
         
     def _handle_event(self, event_name: str):
         """
