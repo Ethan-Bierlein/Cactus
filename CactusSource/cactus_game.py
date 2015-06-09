@@ -1,13 +1,13 @@
-class MainGame(object):
+class CactusGame(object):
     """
-    Stores general data about the game. A MainGame instance
-    contains the following attributes.
+    Stores general data about the game. A CactusGame instance
+    contains the following attributes:
     
         class_data["name"]              - The name of the game.
         class_data["desc"]              - The game's description.
         class_data["prompt"]            - The global prompt to be used.
         class_data["invalid_input_msg"] - A message to print if user enters invalid input.
-        class_data["map"]               - The game's map data, a GameMap instance.
+        class_data["map"]               - The game's map data, a CactusMap instance.
         class_data["case_sensitive"]    - If commands, event handlers, and room names should be case sensitive.
         class_data["allow_help"]        - If the game should print out the choices for the user or not.
         class_data["about_text"]        - The text to be printed out when the user types the `about` command.
@@ -17,11 +17,11 @@ class MainGame(object):
         self.class_data        = class_data
         self.class_data["map"].set_game(self)
         self.map_start         = self.class_data["map"].find_start()
-        self.map_position      = self.map_start
-        self.last_map_position = None
+        self.cactus_position      = self.map_start
+        self.last_cactus_position = None
         
-        for map_position in self.class_data["map"].class_data["data"]:
-            map_position.set_game(self)
+        for cactus_position in self.class_data["map"].class_data["data"]:
+            cactus_position.set_game(self)
         
     def _handle_event(self, event_name: str):
         """
@@ -37,8 +37,8 @@ class MainGame(object):
         event_data = event_name.split(".")
         
         if event_name in self._conditional_lower_list(self.class_data["event_handlers"]):
-            current_location_name = self.class_data["map"].class_data["data"][self.map_position].class_data["name"]
-            if event_data[0] == "game" or (event_data[0] == "map_position" and self._conditional_lower(current_location_name) == self._conditional_lower(event_data[1])):
+            current_location_name = self.class_data["map"].class_data["data"][self.cactus_position].class_data["name"]
+            if event_data[0] == "game" or (event_data[0] == "cactus_position" and self._conditional_lower(current_location_name) == self._conditional_lower(event_data[1])):
                 event_handlers_lowered_keys = self._conditional_lower_dict_keys(self.class_data["event_handlers"])
                 function = event_handlers_lowered_keys[event_name]
                 if function != None:
@@ -74,7 +74,7 @@ class MainGame(object):
             
     def _evaluate_possible_choices(self):
         """
-        Evaluates the possible choices in each MapPosition
+        Evaluates the possible choices in each CactusPosition
         and determines if the referenced indexes for each
         choice are valid.
         """
@@ -98,32 +98,32 @@ class MainGame(object):
         self._handle_event("intro_msg.after")
         
         while True:
-            map_position_data = self.class_data["map"].class_data["data"][self.map_position]
-            choices           = map_position_data.class_data["choices"]
+            cactus_position_data = self.class_data["map"].class_data["data"][self.cactus_position]
+            choices           = cactus_position_data.class_data["choices"]
             
-            if self.map_position != self.last_map_position:
-                map_position_data.position_enter()
+            if self.cactus_position != self.last_cactus_position:
+                cactus_position_data.position_enter()
             
             self._handle_event("prompt.before")
             user_input = input(self.class_data["prompt"])
             self._handle_event("prompt.after")
             
-            cached_map_position = self.map_position  # In case `self.map_position` gets changed below.
+            cached_cactus_position = self.cactus_position  # In case `self.cactus_position` gets changed below.
             
             if self._conditional_lower(user_input) in self._conditional_lower_list(choices):
                 self._handle_event("handle_valid_command.before")
-                self._handle_event("map_position." + map_position_data.class_data["name"] + ".command." + user_input + ".before")
-                self.map_position = self._conditional_lower_dict_keys(choices)[self._conditional_lower(user_input)]
-                map_position_data.position_exit()
-                self._handle_event("map_position." + map_position_data.class_data["name"] + ".command." + user_input + ".after")
+                self._handle_event("cactus_position." + cactus_position_data.class_data["name"] + ".command." + user_input + ".before")
+                self.cactus_position = self._conditional_lower_dict_keys(choices)[self._conditional_lower(user_input)]
+                cactus_position_data.position_exit()
+                self._handle_event("cactus_position." + cactus_position_data.class_data["name"] + ".command." + user_input + ".after")
                 self._handle_event("handle_valid_command.after")
                 
             elif self._conditional_lower(user_input) == "help" and self.class_data["allow_help"]:
                 self._handle_event("handle_help.before")
                 print("You have the following choices:")
-                if len(map_position_data.class_data["choices"]) != 0:
+                if len(cactus_position_data.class_data["choices"]) != 0:
                     print(
-                        " - " + "\n - ".join([key for key, value in map_position_data.choices.items()])
+                        " - " + "\n - ".join([key for key, value in cactus_position_data.class_data["choices"].items()])
                     )
                 print(
                     " - " + "\n - ".join(["Help", "About"])
@@ -141,4 +141,4 @@ class MainGame(object):
                 print(self.class_data["invalid_input_msg"])
                 self._handle_event("handle_incorrect_command.after")
             
-            self.last_map_position = cached_map_position
+            self.last_cactus_position = cached_cactus_position

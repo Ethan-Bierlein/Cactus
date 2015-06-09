@@ -1,12 +1,12 @@
-class MapPosition(object):
+class CactusPosition(object):
     """
     Stores general data about a position on the
-    map. A MapPosition instance contains the
+    map. A CactusPosition instance contains the
     following data.
     
-        class_data["name"]       - The name of the MapPosition.
-        class_data["desc_enter"] - A description of the MapPosition displayed when the player enters.
-        class_data["desc_exit"]  - A description of the MapPosition displayed when the player exits.
+        class_data["name"]       - The name of the CactusPosition.
+        class_data["desc_enter"] - A description of the CactusPosition displayed when the player enters.
+        class_data["desc_exit"]  - A description of the CactusPosition displayed when the player exits.
         class_data["choices"]    - A dictionary referencing other possible choices, e.g, indexes in the map.
     """
     def __init__(self, class_data: dict):
@@ -23,15 +23,15 @@ class MapPosition(object):
         
     def _handle_event(self, event_name: str):
         """
-        Calls MainGame._run_handled_event with
+        Calls CactusGame._run_handled_event with
         context-specific arguments.
         """
-        self.game._run_handled_event("map_position." + self._conditional_lower(self.class_data["name"]) + "." + event_name)
+        self.game._run_handled_event("cactus_position." + self._conditional_lower(self.class_data["name"]) + "." + event_name)
         
     def position_enter(self):
         """
-        Output the various data associated with a MapPosition when
-        the player enters the MapPosition.
+        Output the various data associated with a CactusPosition when
+        the player enters the CactusPosition.
         """
         self._handle_event("enter.before")
         if self.class_data["choices"] != {}:
@@ -62,8 +62,8 @@ class MapPosition(object):
             
     def position_exit(self):
         """
-        Output the various data associated with a MapPosition when
-        the player exits the MapPosition.
+        Output the various data associated with a CactusPosition when
+        the player exits the CactusPosition.
         """
         self._handle_event("exit.before")
         print(self.class_data["desc_exit"])
