@@ -4,16 +4,13 @@ class MapPosition(object):
     map. A MapPosition instance contains the
     following data.
     
-        name       - The name of the MapPosition.
-        desc_enter - A description of the MapPosition displayed when the player enters.
-        desc_exit  - A description of the MapPosition displayed when the player exits.
-        choices    - A dictionary referencing other possible choices, e.g, indexes in the map.
+        class_data["name"]       - The name of the MapPosition.
+        class_data["desc_enter"] - A description of the MapPosition displayed when the player enters.
+        class_data["desc_exit"]  - A description of the MapPosition displayed when the player exits.
+        class_data["choices"]    - A dictionary referencing other possible choices, e.g, indexes in the map.
     """
-    def __init__(self, name: str, desc_enter: str, desc_exit: str, choices: dict):
-        self.name       = name
-        self.desc_enter = desc_enter
-        self.desc_exit  = desc_exit
-        self.choices    = choices
+    def __init__(self, class_data: dict):
+        self.class_data = class_data
         self.game       = None
         
     def set_game(self, game):
@@ -27,7 +24,7 @@ class MapPosition(object):
         Calls MainGame._run_handled_event with
         context-specific arguments.
         """
-        self.game._run_handled_event("map_position." + self.game._conditional_lower(self.name) + "." + event_name)
+        self.game._run_handled_event("map_position." + self.game._conditional_lower(self.class_data["name"]) + "." + event_name)
         
     def position_enter(self):
         """
@@ -35,27 +32,27 @@ class MapPosition(object):
         the player enters the MapPosition.
         """
         self._handle_event("enter.before")
-        if self.choices != {}:
-            if self.game.allow_help:
+        if self.class_data["choices"] != {}:
+            if self.game.class_data["allow_help"]:
                 print(
                     "{0}: {1} Choices: {2}".format(
-                        self.name,
-                        self.desc_enter,
-                        ", ".join([key for key, value in self.choices.items()])
+                        self.class_data["name"],
+                        self.class_data["desc_enter"],
+                        ", ".join([key for key, value in self.class_data["choices"].items()])
                     )
                 )
             else:
                 print(
                     "{0}: {1}".format(
-                        self.name,
-                        self.desc_enter
+                        self.class_data["name"],
+                        self.class_data["desc_enter"]
                     )
                 )
         else:
             print(
                 "{0}: {1}".format(
-                    self.name,
-                    self.desc_enter
+                    self.class_data["name"],
+                    self.class_data["desc_enter"]
                 )
             )
         
@@ -67,5 +64,5 @@ class MapPosition(object):
         the player exits the MapPosition.
         """
         self._handle_event("exit.before")
-        print(self.desc_exit)
+        print(self.class_data["desc_exit"])
         self._handle_event("exit.after")
