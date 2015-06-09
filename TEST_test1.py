@@ -1,12 +1,9 @@
 from sys import exit
-from CactusSource.cactus_position import CactusPosition
-from CactusSource.cactus_map import CactusMap
-from CactusSource.cactus_game import CactusGame
+import cactus
 
-
-game_map = CactusMap({
+flowchart = cactus.Flowchart({
     "data": [
-        CactusPosition({
+        cactus.Position({
             "name": "start",
             "desc_enter": "Description on enter.",
             "desc_exit": "Description on exit.",
@@ -15,13 +12,13 @@ game_map = CactusMap({
                 "choice2": 2
             }
         }),
-        CactusPosition({
+        cactus.Position({
             "name": "Name Goes Here 1",
             "desc_enter": "Description on enter.",
             "desc_exit": "Description on exit.",
             "choices": {}
         }),
-        CactusPosition({
+        cactus.Position({
             "name": "Name Goes Here 2",
             "desc_enter": "Description on enter.",
             "desc_exit": "Description on exit.",
@@ -31,20 +28,19 @@ game_map = CactusMap({
 })
 
 
-cactus_game = CactusGame({
+game = cactus.Game({
     "name": "Game Name",
     "desc": "Game Description",
     "prompt": "> ",
     "invalid_input_msg": "Invalid input",
-    "map": game_map,
+    "flowchart": flowchart,
     "case_sensitive": False,
     "allow_help": True,
     "about_text": "Write about your game here.",
     "event_handlers": {
-        "cactus_position.name goes here 1.enter.after": exit,
-        "cactus_position.name goes here 2.enter.after": exit
+        "position.name goes here 1.enter.after": exit,
+        "position.name goes here 2.enter.after": exit
     }
 })
 
-
-cactus_game.play_game()
+game.play_game()
