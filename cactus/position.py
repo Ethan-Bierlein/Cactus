@@ -1,13 +1,13 @@
-class CactusPosition(object):
+class Position(object):
     """
     Stores general data about a position on the
-    map. A CactusPosition instance contains the
+    flowchart. A Position instance contains the
     following data.
     
-        class_data["name"]       - The name of the CactusPosition.
-        class_data["desc_enter"] - A description of the CactusPosition displayed when the player enters.
-        class_data["desc_exit"]  - A description of the CactusPosition displayed when the player exits.
-        class_data["choices"]    - A dictionary referencing other possible choices, e.g, indexes in the map.
+        class_data["name"]       - The name of the Position.
+        class_data["desc_enter"] - A description of the Position displayed when the player enters.
+        class_data["desc_exit"]  - A description of the Position displayed when the player exits.
+        class_data["choices"]    - A dictionary referencing other possible choices, e.g, indexes in the flowchart.
     """
     def __init__(self, class_data: dict):
         self.class_data         = class_data
@@ -18,20 +18,20 @@ class CactusPosition(object):
         """
         Sets the game instance this object belongs to.
         """
-        self.game = game
+        self.game               = game
         self._conditional_lower = self.game._conditional_lower
         
     def _handle_event(self, event_name: str):
         """
-        Calls CactusGame._run_handled_event with
+        Calls Game._run_handled_event with
         context-specific arguments.
         """
-        self.game._run_handled_event("cactus_position." + self._conditional_lower(self.class_data["name"]) + "." + event_name)
+        self.game._run_handled_event("position." + self._conditional_lower(self.class_data["name"]) + "." + event_name)
         
     def position_enter(self):
         """
-        Output the various data associated with a CactusPosition when
-        the player enters the CactusPosition.
+        Output the various data associated with a Position when
+        the player enters the Position.
         """
         self._handle_event("enter.before")
         if self.class_data["choices"] != {}:
@@ -62,8 +62,8 @@ class CactusPosition(object):
             
     def position_exit(self):
         """
-        Output the various data associated with a CactusPosition when
-        the player exits the CactusPosition.
+        Output the various data associated with a Position when
+        the player exits the Position.
         """
         self._handle_event("exit.before")
         print(self.class_data["desc_exit"])
