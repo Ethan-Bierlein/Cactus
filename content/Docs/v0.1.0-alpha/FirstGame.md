@@ -30,23 +30,23 @@ Each position has a fixed set of choices (commands) that the user can take. Each
             "Now leaving the start.",
             {
                 "left": 1,
-                "right": 2,
-            },
+                "right": 2
+            }
         ),
         MapPosition(
             "Left",
             "You took the left path and died.",
             "",
             {},
-        function=exit,
+        function=exit
         ),
         MapPosition(
             "Right",
             "You took the right path and lived!",
             "",
             {},
-            function=exit,
-        ),
+            function=exit
+        )
     ])
 
 As you can see, we have three positions (`MapPositions`) in this map. We passed all three of these to the initialiser function in a list.
@@ -59,8 +59,8 @@ Let's dissect the first `MapPosition`:
       "Now leaving the start.",
       {
         "left": 1,
-        "right": 2,
-      },
+        "right": 2
+      }
     )
 
 It has the following attributes:
@@ -79,7 +79,7 @@ It has the following attributes:
       "> ",
       "Uh-oh! Wrong input!",
       game_map,
-      True,
+      True
     )
 
 It has the following attributes:
