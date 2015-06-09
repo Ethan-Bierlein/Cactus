@@ -23,7 +23,7 @@ FLOWCHART = cactus.Flowchart({
             "name": "Name Goes Here 2",
             "desc_enter": "Description on enter.",
             "desc_exit": "Description on exit.",
-            "choices": {},
+            "choices": {}
         })
     ]
 })

@@ -32,7 +32,7 @@ class Game(object):
         and make sure that it's valid.
         """
         class_data_keys_types = [
-            ["name", str], ["desc", str], ["prompt", str], ["invalid_input_msg", str], 
+            ["name", str], ["desc", str], ["prompt", str], ["invalid_input_msg", str],
             ["flowchart", Flowchart], ["case_sensitive", bool], ["allow_help", bool], ["about_text", str],
             ["event_handlers", dict]
         ]
@@ -62,6 +62,11 @@ class Game(object):
         arguments.
         """
         self._run_handled_event("game." + event_name)
+        
+        self._check_class_data()
+        self.class_data["flowchart"]._check_class_data()
+        for item in self.class_data["flowchart"].class_data["data"]:
+            item._check_class_data()
         
     def _run_handled_event(self, event_name: str):
         """
