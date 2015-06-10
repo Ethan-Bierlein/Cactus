@@ -15,7 +15,7 @@ def cactus_class_method_exception_handle(function):
             return function(self, *args, **kwargs)
         except Exception as cactus_game_error:
             with open("cactus_error_log.txt", "w+") as cactus_error_log:
-                with redirect_stdout(f):
+                with redirect_stdout(cactus_error_log):
                     print("Program has encountered an error. If you believe that this is an engine-related error, please report it at https://github.com/ShearOfDoom/Cactus/issues")
                     print("Cactus error log")
                     print("=" * 15)
