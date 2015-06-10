@@ -1,8 +1,7 @@
 from sys import exit
 import cactus
 
-
-FLOWCHART = cactus.Flowchart({
+flowchart = cactus.Flowchart({
     "data": [
         cactus.Position({
             "name":       "start",
@@ -29,12 +28,12 @@ FLOWCHART = cactus.Flowchart({
 })
 
 
-GAME = cactus.Game({
+game = cactus.Game({
     "name":              "Game Name",
     "desc":              "Game Description",
     "prompt":            "> ",
     "invalid_input_msg": "Invalid input",
-    "flowchart":         FLOWCHART,
+    "flowchart":         flowchart,
     "case_sensitive":    False,
     "allow_help":        True,
     "about_text":        "Write about your game here.",
@@ -45,4 +44,4 @@ GAME = cactus.Game({
 })
 
 
-GAME.play_game()
+game.play_game()
