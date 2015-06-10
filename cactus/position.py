@@ -23,9 +23,9 @@ class Position(object):
         Iterate over the contained class data in self.class_data
         and make sure that it's valid.
         """
-        class_data_keys_types = [["name", str], ["desc_enter", str], ["desc_exit", str], ["choices", dict]]
-        class_data_keys       = ["name", "desc_enter", "desc_exit", "choices"]
-        for item in class_data_keys_types:
+        CLASS_DATA_KEYS_TYPES = [["name", str], ["desc_enter", str], ["desc_exit", str], ["choices", dict]]
+        CLASS_DATA_KEYS       = ["name", "desc_enter", "desc_exit", "choices"]
+        for item in CLASS_DATA_KEYS_TYPES:
             if item[0] in self.class_data:
                 if type(self.class_data[item[0]]) == item[1]:
                     continue
@@ -35,7 +35,7 @@ class Position(object):
                 raise KeyError("Could not find key {0} in class data.".format(item[0]))
                 
         for key, value in self.class_data.items():
-            if key in class_data_keys:
+            if key in CLASS_DATA_KEYS:
                 continue
             else:
                 raise KeyError("Key {0} is invalid.".format(key))

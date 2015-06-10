@@ -34,17 +34,17 @@ class Game(object):
         """
         self._evaluate_possible_choices()
         
-        class_data_keys_types = [
+        CLASS_DATA_KEYS_TYPES = [
             ["name", str], ["desc", str], ["prompt", str], ["invalid_input_msg", str],
             ["flowchart", Flowchart], ["case_sensitive", bool], ["allow_help", bool], ["about_text", str],
             ["event_handlers", dict]
         ]
-        class_data_keys       = [
+        CLASS_DATA_KEYS       = [
             "name", "desc", "prompt", "invalid_input_msg",
             "flowchart", "case_sensitive", "allow_help", "about_text",
             "event_handlers"
         ]
-        for item in class_data_keys_types:
+        for item in CLASS_DATA_KEYS_TYPES:
             if item[0] in self.class_data:
                 if type(self.class_data[item[0]]) == item[1]:
                     continue
@@ -54,7 +54,7 @@ class Game(object):
                 raise KeyError("Could not find key {0} in class data.".format(item[0]))
                 
         for key, value in self.class_data.items():
-            if key in class_data_keys:
+            if key in CLASS_DATA_KEYS:
                 continue
             else:
                 raise KeyError("Key {0} is invalid.".format(key))
