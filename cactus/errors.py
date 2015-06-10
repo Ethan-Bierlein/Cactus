@@ -1,7 +1,10 @@
 from contextlib import redirect_stdout
 from traceback import format_exc
 from pprint import pformat
-from sys import exit
+from sys import exit, maxsize
+from os import path
+from time import strftime
+import platform
 
 def cactus_class_method_exception_handle(function):
     """
@@ -17,14 +20,34 @@ def cactus_class_method_exception_handle(function):
         try:
             return function(self, *args, **kwargs)
         except Exception as cactus_game_error:
-            print("Program has encountered an error. If you believe that this is")
-            print("engine-related, please report it to https://github.com/ShearOfDoom/Cactus/issues/")
-            print("To find full error stacktrace and details, see cactus_error_log.txt.")
-            with open("cactus_error_log.txt", "w+") as cactus_error_log:
+            date_string = strftime("%H_%M_%S_%b_%d_%y")
+            
+            print("\n" + "=" * 50 + "\n")
+            print("Oh no! Something's gone wrong internally. **This is")
+            print("not your fault.** Please contact the game developer")
+            print("to address this issue.")
+            print("")
+            print("In your error report, please include the file:")
+            print(path.abspath("cactus_error_log_" + date_string +".txt"))
+            print("\n" + "=" * 45 + "\n")
+            
+            with open("cactus_error_log_" + date_string +".txt", "w+") as cactus_error_log:
                 with redirect_stdout(cactus_error_log):
-                    print("ERROR")
                     print("\n" + "=" * 45 + "\n")
-                    print("CLASS DATA:", pformat(self.class_data, indent=2))
+                    print("CACTUS GAME ENGINE ERROR REPORT")
+                    print("")
+                    print("If you think this error is engine-related,")
+                    print("please report it to:")
+                    print("https://github.com/ShearOfDoom/Cactus/issues/")
+                    print("\n" + "=" * 45 + "\n")
+                    print("Date/Time: {0}".format(strftime("%c")))
+                    print("Operating System: {0}".format(platform.platform()))
+                    print("Processor: {0}".format(platform.processor()))
+                    print("System [not Python itself] 32 or 64 bit: {0}".format(platform.machine()))
+                    print("Is 64-bit Python?: {0}".format(maxsize > 2**32))
+                    print("Python: {0} {1} {2} {3}".format(platform.python_implementation(), platform.python_build()[0], platform.python_build()[1], platform.python_compiler()))
+                    print("\n" + "=" * 45 + "\n")
+                    print("CLASS DATA:", pformat(self.class_data, indent = 2))
                     print("\n" + "=" * 45 + "\n")
                     print("STACK TRACE:", format_exc())
                     print("=" * 45 + "\n")
