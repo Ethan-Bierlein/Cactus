@@ -23,9 +23,9 @@ def _cactus_class_method_exception_handle(function):
             date_string = strftime("%H_%M_%S_%b_%d_%y")
             
             print("\n" + "=" * 50 + "\n")
-            print("Oh no! Something's gone wrong internally. **This is")
-            print("not your fault.** Please contact the game developer")
-            print("to address this issue.")
+            print("Oh no! Something's gone wrong! If you think")
+            print("that this error is engine-related, please contact")
+            print("the developers to address this issue.")
             print("")
             print("In your error report, please include the file:")
             print(path.abspath("cactus_error_log_" + date_string +".txt"))
