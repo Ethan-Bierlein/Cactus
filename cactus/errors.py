@@ -6,13 +6,13 @@ from os import path
 from time import strftime
 import platform
 
-def cactus_class_method_exception_handle(function):
+def _cactus_class_method_exception_handle(function):
     """
     This function provides a general wrapper for
     handling errors with the Cactus engine. Example
     usage:
     
-        @cactus_class_method_exception_handle
+        @_cactus_class_method_exception_handle
         def my_class_method(self, args):
             code
     """

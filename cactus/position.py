@@ -1,4 +1,4 @@
-from .errors import cactus_class_method_exception_handle
+from .errors import _cactus_class_method_exception_handle
 
 class Position(object):
     """
@@ -13,11 +13,11 @@ class Position(object):
     """
     def __init__(self, class_data: dict):
         self.class_data         = class_data
-        self.game               = None
+        self._game               = None
         self._conditional_lower = None
         self._check_class_data()
         
-    @cactus_class_method_exception_handle
+    @_cactus_class_method_exception_handle
     def _check_class_data(self):
         """
         Iterate over the contained class data in self.class_data
@@ -40,31 +40,31 @@ class Position(object):
             else:
                 raise KeyError("Key {0} is invalid.".format(key))
     
-    @cactus_class_method_exception_handle
-    def set_game(self, game):
+    @_cactus_class_method_exception_handle
+    def _set_game(self, game):
         """
         Sets the game instance this object belongs to.
         """
-        self.game               = game
-        self._conditional_lower = self.game._conditional_lower
+        self._game               = game
+        self._conditional_lower = self._game.conditional_lower
         
-    @cactus_class_method_exception_handle
+    @_cactus_class_method_exception_handle
     def _handle_event(self, event_name: str):
         """
         Calls Game._run_handled_event with
         context-specific arguments.
         """
-        self.game._run_handled_event("position." + self._conditional_lower(self.class_data["name"]) + "." + event_name)
+        self._game._run_handled_event("position." + self._conditional_lower(self.class_data["name"]) + "." + event_name)
         
-    @cactus_class_method_exception_handle
-    def position_enter(self):
+    @_cactus_class_method_exception_handle
+    def enter(self):
         """
         Output the various data associated with a Position when
         the player enters the Position.
         """
         self._handle_event("enter.before")
         if self.class_data["choices"] != {}:
-            if self.game.class_data["allow_help"]:
+            if self._game.class_data["allow_help"]:
                 print(
                     "{0}: {1} Choices: {2}".format(
                         self.class_data["name"],
@@ -89,8 +89,8 @@ class Position(object):
         
         self._handle_event("enter.after")
             
-    @cactus_class_method_exception_handle
-    def position_exit(self):
+    @_cactus_class_method_exception_handle
+    def exit(self):
         """
         Output the various data associated with a Position when
         the player exits the Position.
