@@ -49,15 +49,15 @@ class Game(object):
                 if type(self.class_data[item[0]]) == item[1]:
                     continue
                 else:
-                    raise TypeError("Type of item {0} is invalid.".format(item[0]))
+                    raise TypeError("Type of item '{0}' is invalid.".format(item[0]))
             else:
-                raise KeyError("Could not find key {0} in class data.".format(item[0]))
+                raise KeyError("Could not find key '{0}' in class data.".format(item[0]))
                 
         for key, value in self.class_data.items():
             if key in CLASS_DATA_KEYS:
                 continue
             else:
-                raise KeyError("Key {0} is invalid.".format(key))
+                raise KeyError("Key '{0}' is invalid.".format(key))
     
     @_cactus_class_method_exception_handle
     def _handle_event(self, event_name: str):
