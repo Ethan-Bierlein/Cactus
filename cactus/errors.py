@@ -23,7 +23,7 @@ def _cactus_class_method_exception_handle(function):
             date_string = strftime("%H_%M_%S_%b_%d_%y")
             
             print("\n" + "=" * 50 + "\n")
-            print("Something wrong internally happened. (This may not be your fault!). This may be an issue with the game itself, or the") 
+            print("Something wrong internally happened. (This may or may not be your fault!). This may be an issue with the game itself, or the") 
             print("underlying components. To help fix this issue, please contact the developers of the game with the error report.") 
             print("")
             print("In your error report, please include the file:")
