@@ -38,8 +38,8 @@ GAME = cactus.Game({
     "allow_help":        True,
     "about_text":        "Write about your game here.",
     "event_handlers": {
-        "position.name goes here 1.enter.after": exit,
-        "position.name goes here 2.enter.after": exit
+        "position.Name Goes Here 1.enter.after": exit,
+        "position.Name Goes Here 2.enter.after": exit
     }
 })
 
