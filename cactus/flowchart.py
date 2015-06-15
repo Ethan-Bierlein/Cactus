@@ -19,7 +19,7 @@ class Flowchart(object):
         Iterate over the contained class data in self.class_data
         and make sure that it's valid.
         """
-        CLASS_DATA_KEYS_TYPES = [["data", list]]
+        CLASS_DATA_KEYS_TYPES = [["data", dict]]
         CLASS_DATA_KEYS       = ["data"]
         for item in CLASS_DATA_KEYS_TYPES:
             if item[0] in self.class_data:
@@ -58,7 +58,7 @@ class Flowchart(object):
         This iterates over self.class_data["data"] and finds the Position
         instance with the name specifies, and returns it's index.
         """
-        for index, position in enumerate(self.class_data["data"]):
+        for key, position in self.class_data["data"].items():
             if self._conditional_lower(position.class_data["name"]) == self._conditional_lower(name):
-                return index
+                return key
         raise LookupError("Could not find position named {0}.".format(name))

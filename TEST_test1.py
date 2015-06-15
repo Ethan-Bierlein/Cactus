@@ -2,29 +2,29 @@ from sys import exit
 import cactus
 
 FLOWCHART = cactus.Flowchart({
-    "data": [
-        cactus.Position({
+    "data": {
+        "start": cactus.Position({
             "name":       "start",
             "desc_enter": "Description on enter.",
             "desc_exit":  "Description on exit.",
             "choices": {
-                "choice1": 1,
-                "choice2": 2
+                "choice1": "1",
+                "choice2": "2"
             }
         }),
-        cactus.Position({
+        "1": cactus.Position({
             "name":       "Name Goes Here 1",
             "desc_enter": "Description on enter.",
             "desc_exit":  "Description on exit.",
             "choices":    {}
         }),
-        cactus.Position({
+        "2": cactus.Position({
             "name":       "Name Goes Here 2",
             "desc_enter": "Description on enter.",
             "desc_exit":  "Description on exit.",
             "choices":    {}
         })
-    ]
+    }
 })
 
 

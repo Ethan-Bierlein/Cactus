@@ -23,7 +23,7 @@ class Game(object):
         self._last_position   = None
         self._check_class_data()
         
-        for position in self.class_data["flowchart"].class_data["data"]:
+        for key, position in self.class_data["flowchart"].class_data["data"].items():
             position._set_game(self)
         
     @_cactus_class_method_exception_handle
@@ -69,8 +69,8 @@ class Game(object):
         
         self._check_class_data()
         self.class_data["flowchart"]._check_class_data()
-        for item in self.class_data["flowchart"].class_data["data"]:
-            item._check_class_data()
+        for key, position in self.class_data["flowchart"].class_data["data"].items():
+            position._check_class_data()
     
     @_cactus_class_method_exception_handle
     def _run_handled_event(self, event_name: str):
@@ -126,9 +126,9 @@ class Game(object):
         choice are valid.
         """
         flowchart_data = self.class_data["flowchart"].class_data["data"]
-        for position in flowchart_data:
+        for key, position in flowchart_data.items():
             for key, value in position.class_data["choices"].items():
-                if value <= len(flowchart_data) - 1:
+                if value in flowchart_data:
                     continue
                 else:
                     raise ValueError("Invalid reference index.")
