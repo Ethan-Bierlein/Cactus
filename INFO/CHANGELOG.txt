@@ -1,1 +1,20 @@
+[VERSION 0.1.0]
+	[All Changes]
+	- No changes.
+	
+	[All Fixes]
+	- No fixes.
 
+
+[VERSION 0.2.0]
+	[All Changes]
+	- Flexible event handler for running functions on certain events.
+	- Easier to read syntax using dictionaries.
+	- Dictionary keys are now used as position references rather than list indexes.
+	- "help" and "about" commands for showing game information, and position information.
+	- Global commands that are executable from any position on the flowchart.
+	- Various renaming of modules/variables/classes/functions.
+	- Error reporting that spits out helpful crash reports.
+	
+	[All Fixes]
+	- No fixes to show.
