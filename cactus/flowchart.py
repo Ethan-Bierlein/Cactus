@@ -19,19 +19,18 @@ class Flowchart(object):
         Iterate over the contained class data in self.class_data
         and make sure that it's valid.
         """
-        CLASS_DATA_KEYS_TYPES = [["data", dict]]
-        CLASS_DATA_KEYS       = ["data"]
-        for item in CLASS_DATA_KEYS_TYPES:
-            if item[0] in self.class_data:
-                if type(self.class_data[item[0]]) == item[1]:
+        CLASS_DATA_SCHEMA = {"data": dict}
+        for item_name, item_type in CLASS_DATA_SCHEMA.items():
+            if item_name in self.class_data:
+                if type(self.class_data[item_name]) == item_type:
                     continue
                 else:
-                    raise TypeError("Type of item '{0}' is invalid.".format(item[0]))
+                    raise TypeError("Type of item '{0}' is invalid.".format(item_name))
             else:
-                raise KeyError("Could not find key '{0}' in class data.".format(item[0]))
+                raise KeyError("Could not find key '{0}' in class data.".format(item_name))
                 
         for key, value in self.class_data.items():
-            if key in CLASS_DATA_KEYS:
+            if key in CLASS_DATA_SCHEMA.keys():
                 continue
             else:
                 raise KeyError("Key '{0}' is invalid.".format(key))

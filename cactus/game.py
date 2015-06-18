@@ -35,27 +35,29 @@ class Game(object):
         """
         self._evaluate_possible_choices()
         
-        CLASS_DATA_KEYS_TYPES = [
-            ["name", str], ["desc", str], ["prompt", str], ["invalid_input_msg", str],
-            ["flowchart", Flowchart], ["case_sensitive", bool], ["allow_help", bool], ["about_text", str],
-            ["event_handlers", dict], ["global_commands", dict]
-        ]
-        CLASS_DATA_KEYS       = [
-            "name", "desc", "prompt", "invalid_input_msg",
-            "flowchart", "case_sensitive", "allow_help", "about_text",
-            "event_handlers", "global_commands"
-        ]
-        for item in CLASS_DATA_KEYS_TYPES:
-            if item[0] in self.class_data:
-                if type(self.class_data[item[0]]) == item[1]:
+        CLASS_DATA_SCHEMA = {
+            "name": str,
+            "desc": str,
+            "prompt": str,
+            "invalid_input_msg": str,
+            "flowchart": Flowchart,
+            "case_sensitive": bool,
+            "allow_help": bool,
+            "about_text": str,
+            "event_handlers": dict,
+            "global_commands": dict
+        }
+        for item_name, item_type in CLASS_DATA_SCHEMA.items():
+            if item_name in self.class_data:
+                if type(self.class_data[item_name]) == item_type:
                     continue
                 else:
-                    raise TypeError("Type of item '{0}' is invalid.".format(item[0]))
+                    raise TypeError("Type of item '{0}' is invalid.".format(item_name))
             else:
-                raise KeyError("Could not find key '{0}' in class data.".format(item[0]))
-                
+                raise KeyError("Could not find key '{0}' in class data.".format(item_name))
+        
         for key, value in self.class_data.items():
-            if key in CLASS_DATA_KEYS:
+            if key in CLASS_DATA_SCHEMA.keys():
                 continue
             else:
                 raise KeyError("Key '{0}' is invalid.".format(key))
