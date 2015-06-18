@@ -1,5 +1,5 @@
 ---
-title: v0.1.0-alpha Docs
+title: v0.1.x-alpha Docs
 site_area: Docs
 layout: default
 permalink: /Docs/v0.1.x-alpha/
@@ -7,8 +7,8 @@ permalink: /Docs/v0.1.x-alpha/
 
 ## Getting Started:
 
-- **[Installation Guide]({{ site.base_url }}/Docs/v0.1.0-alpha/Installation/)**
-- **[Your First Game]({{ site.base_url }}/Docs/v0.1.0-alpha/FirstGame/)**
+- **[Installation Guide]({{ site.base_url }}/Docs/v0.1.x-alpha/Installation/)**
+- **[Your First Game]({{ site.base_url }}/Docs/v0.1.x-alpha/FirstGame/)**
 
 ## Reference:
 
