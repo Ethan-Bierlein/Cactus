@@ -69,13 +69,21 @@ class Position(object):
         self._handle_event("enter.before")
         if self.class_data["choices"] != {}:
             if self._game.class_data["allow_help"]:
-                print(
-                    "{0}: {1} Choices: {2}".format(
-                        self.class_data["name"],
-                        self.class_data["desc_enter"],
-                        ", ".join([key for key, value in self.class_data["choices"].items()])
+                if len(self.class_data["choices"]) == 0:
+                    print(
+                        "{0}: {1}".format(
+                            self.class_data["name"],
+                            self.class_data["desc_enter"]
+                        )
                     )
-                )
+                else:
+                    print(
+                        "{0}: {1} Choices: {2}".format(
+                            self.class_data["name"],
+                            self.class_data["desc_enter"],
+                            ", ".join([key for key, value in self.class_data["choices"].items()])
+                        )
+                    )
             else:
                 print(
                     "{0}: {1}".format(
