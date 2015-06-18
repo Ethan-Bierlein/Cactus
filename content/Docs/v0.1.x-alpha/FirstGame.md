@@ -2,7 +2,7 @@
 title: Your First Game
 site_area: Docs
 layout: default
-permalink: /Docs/v0.1.0-alpha/FirstGame/
+permalink: /Docs/v0.1.x-alpha/FirstGame/
 ---
 
 ## Includes:

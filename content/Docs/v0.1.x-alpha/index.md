@@ -2,7 +2,7 @@
 title: v0.1.0-alpha Docs
 site_area: Docs
 layout: default
-permalink: /Docs/v0.1.0-alpha/
+permalink: /Docs/v0.1.x-alpha/
 ---
 
 ## Getting Started:
