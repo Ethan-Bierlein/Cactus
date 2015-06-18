@@ -27,7 +27,6 @@ FLOWCHART = cactus.Flowchart({
     }
 })
 
-
 GAME = cactus.Game({
     "name":              "Game Name",
     "desc":              "Game Description",
@@ -40,6 +39,9 @@ GAME = cactus.Game({
     "event_handlers": {
         "position.Name Goes Here 1.enter.after": exit,
         "position.Name Goes Here 2.enter.after": exit
+    },
+    "global_commands": {
+        "exit": exit
     }
 })
 

@@ -15,6 +15,7 @@ class Game(object):
         class_data["allow_help"]        - If the game should print out the choices for the user or not.
         class_data["about_text"]        - The text to be printed out when the user types the `about` command.
         class_data["event_handlers"]    - A dictionary of optional event handlers.
+        class_data["global_commands"]   - A dictionary of global commands for running functions.
     """
     def __init__(self, class_data: dict):
         self.class_data       = class_data
@@ -37,12 +38,12 @@ class Game(object):
         CLASS_DATA_KEYS_TYPES = [
             ["name", str], ["desc", str], ["prompt", str], ["invalid_input_msg", str],
             ["flowchart", Flowchart], ["case_sensitive", bool], ["allow_help", bool], ["about_text", str],
-            ["event_handlers", dict]
+            ["event_handlers", dict], ["global_commands", dict]
         ]
         CLASS_DATA_KEYS       = [
             "name", "desc", "prompt", "invalid_input_msg",
             "flowchart", "case_sensitive", "allow_help", "about_text",
-            "event_handlers"
+            "event_handlers", "global_commands"
         ]
         for item in CLASS_DATA_KEYS_TYPES:
             if item[0] in self.class_data:
@@ -165,7 +166,12 @@ class Game(object):
                     position_data.exit()
                 self._handle_event("position." + position_data.class_data["name"] + ".command." + user_input + ".after")
                 self._handle_event("handle_valid_command.after")
-                
+  
+            elif self.conditional_lower(user_input) in self.conditional_lower_list(self.class_data["global_commands"]):
+                self._handle_event("handle_valid_command.before")
+                self.conditional_lower_dict_keys(self.class_data["global_commands"])[self.conditional_lower(user_input)]()
+                self._handle_event("handle_valid_command.after")
+
             elif self.conditional_lower(user_input) == "help" and self.class_data["allow_help"]:
                 self._handle_event("handle_help.before")
                 print("You have the following choices:")
