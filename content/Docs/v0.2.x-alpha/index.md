@@ -14,6 +14,6 @@ permalink: /Docs/v0.2.x-alpha/
 
 ### Classes:
 
-- `MainGame` Class
-- `GameMap` Class
-- `MapPosition` Class
+- `Game` Class
+- `Flowchart` Class
+- `Position` Class
