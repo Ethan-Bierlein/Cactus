@@ -5,94 +5,88 @@ layout: default
 permalink: /Docs/v0.2.x-alpha/FirstGame/
 ---
 
-## Includes:
+# Imports
+It's super easy to import Cactus into your project. Once you've added `Cactus/cactus` to your `PYTHONPATH`, this is all you need to do:
 
-First of all, we need to include the needed items:
+    import cactus
+    
+# Creating a `cactus.Position` instance
+A `cactus.Position` instance stores relevant data about a position on a `cactus.Flowchart`. For reference, here's a list of the `cactus.Flowchart` attributes.
 
-    from CactusSource.map_position import MapPosition
-    from CactusSource.game_map import GameMap
-    from CactusSource.main_game import MainGame
+* `"name"` - The position's name.
+* `"desc_enter"` - The description to display when the player "enters" the position.
+* `"desc_exit"` - The description to display when the player "exits" the position.
+* `"choices"` - A dictionary of choices representing other positions on the flowchart. The key is what the user enters, and the value is the reference key to the other position in the flowchart.
 
-## Creating a `GameMap` Instance:
+Here's how a simple `cactus.Position` instance is structured:
 
-After that, we want to create a map for our game. A `GameMap` instance has a list of *map positions*,
+    cactus.Position({
+        "name":       "start",
+        "desc_enter": "Description on enter.",
+        "desc_exit":  "Description on exit.",
+        "choices": {
+            "choice1": "1",
+            "choice2": "2"
+        }
+    })
+    
+# Creating a `cactus.Flowchart` instance
+Flowcharts are essential to Cactus. Flowcharts are how you stucture the "map" that the player of your game will traverse. For reference, here's a list of the `cactus.Flowchart` attributes.
 
-Unlike a conventional map that displays the location of items in space, a Cactus map is more like a flowchart. It describes the possible paths that the user can take by diving the map into *positions,* which have links to other positions.
+* `"data"` - Stores the actual flowchart data as a dictionary.
 
-Each position has a fixed set of choices (commands) that the user can take. Each choice moves the user to another position, although you can just specify the same position to stay at the same position.
+Here's how a simple `Flowchart` instance is structured.
 
- Let's look at an example game map:
+    FLOWCHART = cactus.Flowchart({
+        "data": {
+            "position_name": cactus.Position(
+                ...
+            )
+        }
+    })
+    
+# Creating a `cactus.Game` instance
+The `cactus.Game` class stores general data about your game that isn't relevant to flowcharts or positions. The `cactus.Game` class is also where event handlers and global commands are stored. For reference, here's a list of the `cactus.Game` attributes.
 
-    game_map = GameMap([
-        MapPosition(
-            "Start",
-            "Welcome to the start!",
-            "Now leaving the start.",
-            {
-                "left": 1,
-                "right": 2
-            }
-        ),
-        MapPosition(
-            "Left",
-            "You took the left path and died.",
-            "",
-            {},
-        function=exit
-        ),
-        MapPosition(
-            "Right",
-            "You took the right path and lived!",
-            "",
-            {},
-            function=exit
-        )
-    ])
+* `"name"` - The game's name.
+* `"desc"` - The game's description.
+* `"prompt"` - The prompt to be used for entering commands.
+* `"invalid_input_msg"` - The message to be displayed when the user enters invalid input.
+* `"flowchart"` - The flowchart instance that has been created.
+* `"case_sensitive"` - If this is `False`, then all user input, and certain attribute values a converted to lowercase. If it's `True`, then none of that happens.
+* `"allow_help"` - If this is `True`, then the user can obtain help.
+* `"about_text"` - The game's about text, including the reqiuired attribution text.
+* `"event_handlers"` - A dictionary of the event handlers and their corresponding functions.
+* `"global_commands"` - A dictionary of commands that can be executed anywhere, and their corresponding functions.
 
-As you can see, we have three positions (`MapPositions`) in this map. We passed all three of these to the initialiser function in a list.
+Here's how a simple `cactus.Game` instance is structured.
 
-Let's dissect the first `MapPosition`:
+    GAME = cactus.Game({
+        "name":              "Game Name",
+        "desc":              "Game Description",
+        "prompt":            "> ",
+        "invalid_input_msg": "Invalid input",
+        "flowchart":         FLOWCHART,
+        "case_sensitive":    False,
+        "allow_help":        True,
+        "about_text":        "Write about your game here.",
+        "event_handlers": {
+            "position.Name Goes Here 1.enter.after": exit,
+            "position.Name Goes Here 2.enter.after": exit
+        },
+        "global_commands": {
+            "exit": exit
+        }
+    })
 
-    MapPosition(
-      "Start",
-      "Welcome to the start!",
-      "Now leaving the start.",
-      {
-        "left": 1,
-        "right": 2
-      }
-    )
+# Running your game
+Once you've done all of the above, you're ready to play your game. Assuming you've created an instance of `cactus.Game`, named it `GAME`, and everything checks out, all you need to do is the below:
 
-It has the following attributes:
+    GAME.play_game()
 
-- The name (`Start`)
-- The enter text (`Welcome to the start!`)
-- The exit text (`Now leaving the start.`)
-- Choices (a dictionary of two choices: `left` and `right`)
-    - Each choice has a number that points to the room the user will go to next if they choose that option (in this case, `left` goes to the `Left` room and `right` goes to the `Right` room)
+<!--
+TODO: Add section describing event handlers.
 
-## Creating the Main Game:
-
-    main_game = MainGame(
-      "Test Game",
-      "Welcome to the simple test game.",
-      "> ",
-      "Uh-oh! Wrong input!",
-      game_map,
-      True
-    )
-
-It has the following attributes:
-
-- The name (`Test Game`)
-- The enter text (`Welcome to the simple test game.`)
-- The prompt that will be displayed when asking the user for input (`> `)
-- The text for when a user enters incorrect text (`Uh-oh! Wrong Input!`)
-- The game map (`game_map`)
-- If it should ignore case (`True`)
-
-## Starting the Game:
-
-All you have to run is this:
-
-    main_game.play_game()
+# Event handlers
+...
+-->
