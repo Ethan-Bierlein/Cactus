@@ -7,7 +7,7 @@ permalink: /About/Team/
 
 ## Ethan Bierlein:
 
-#### Contact: ebr4d[at]live.com, [GitHub](https://github.com/ShearOfDoom), [The 2nd Monitor (SE Chat)](http://chat.stackexchange.com/rooms/24299/discussion-about-cactus)
+#### Contact: <a href="mailto:ebr4d@live.com">ebr4d@live.com</a>, [GitHub](https://github.com/ShearOfDoom), [The 2nd Monitor (SE Chat)](http://chat.stackexchange.com/rooms/24299/discussion-about-cactus)
 
 <a href="http://stackexchange.com/users/4280743/ethan-bierlein"><img src="http://stackexchange.com/users/flair/4280743.png" width="208" height="58" alt="profile for Ethan Bierlein on Stack Exchange, a network of free, community-driven Q&amp;A sites" title="profile for Ethan Bierlein on Stack Exchange, a network of free, community-driven Q&amp;A sites" /></a>
 
@@ -15,7 +15,7 @@ Ethan Bierlein is of those <strike>wierdos</strike> developers working on [Cactu
 
 ## Annonomus Penguin:
 
-#### Contact: annonomuspenguin[at]gmail.com, [GitHub](https://github.com/Annonomus-Penguin), [@AnnonPenguin](https://twitter.com/AnnonPenguin)
+#### Contact: <a href="mailto:annonomuspenguin@gmail.com">annonomuspenguin@gmail.com</a>, [GitHub](https://github.com/Annonomus-Penguin), [@AnnonPenguin](https://twitter.com/AnnonPenguin)
 
 <a href="http://stackexchange.com/users/1640390">
 <img src="http://stackexchange.com/users/flair/1640390.png" width="208" height="58" alt="profile for Annonomus Person on Stack Exchange, a network of free, community-driven Q&amp;A sites" title="profile for Annonomus Person on Stack Exchange, a network of free, community-driven Q&amp;A sites"></a>
