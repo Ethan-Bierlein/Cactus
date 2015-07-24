@@ -6,6 +6,17 @@
 
 **[Cactus](http://shearofdoom.github.io/Cactus/)** is a simple engine used to build Zork-style adventure games. Cactus is still in it's early stages of development, but will be updated as regularly as possible, and with as many new features as possible. I hope you enjoy Cactus!
 
+## Installation
+
+- Clone the repository
+```shell
+git clone https://github.com/ShearOfDoom/Cactus.git
+```
+- Install
+```shell
+python setup.py install
+```
+
 ## Setup:
 
 Please see our license. **You are required to add attribution** (again, see license for details). By default, this attribution is included in the `about` command.
