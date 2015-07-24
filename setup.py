@@ -6,7 +6,7 @@ setup(
     version='0.2.0a',
     description='A simple Python engine for creating text-based adventure games.',
     author='Ethan Bierlein',
-    author_email='',
+    author_email='ebr4d@live.com',
     url='https://github.com/ShearOfDoom/Cactus',
     download_url='https://github.com/ShearOfDoom/Cactus/archive/v0.2.0-alpha.zip',
     keywords=[],
