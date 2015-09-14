@@ -1,0 +1,1 @@
+Place any example games in this folder here. This is where pull requests for example games should be put in.
